@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>品牌提問卡｜五款動態試看</title>
+<title>品牌字卡｜提問與金句動態試看</title>
 <style>
 :root{color-scheme:dark;background:#18211f;color:#f5f2e8;font-family:"Noto Sans CJK TC","PingFang TC",sans-serif}
 *{box-sizing:border-box}body{margin:0;padding:28px}main{max-width:1120px;margin:auto}
@@ -24,6 +24,10 @@ button:hover,button[aria-pressed="true"]{background:#f5f2e8;color:#24342e}
 .ambient{position:absolute;right:12%;top:10%;width:22%;height:88%;border-radius:48% 48% 15% 15%;background:linear-gradient(90deg,#1b2b27,#465a50 40%,#263630);filter:blur(28px);opacity:.62}
 .frame-note{position:absolute;right:3%;top:5%;color:#c6cec8;font:500 10px "Noto Sans CJK TC",sans-serif;letter-spacing:.15em;opacity:.7}
 .safe{position:absolute;left:6%;bottom:14%;max-width:86%}
+.safe[data-kind="quote"]{left:auto;right:6%}
+.kind-switch{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:-4px 0 12px}
+.kind-switch span{font-size:12px;color:#aebdb4;letter-spacing:.14em;margin-right:6px}
+.kind-switch button{min-width:100px;text-align:center}
 .card{width:max-content;max-width:100%;padding:14px;border:0;border-radius:0;box-shadow:none;overflow:hidden;animation:exit .45s ease-in 3.28s forwards}
 .card[data-style="jade"]{background:radial-gradient(150% 130% at 18% 12%,rgba(96,124,115,.93),rgba(66,89,81,.92) 52%,rgba(48,66,59,.93));animation:reveal .46s ease-out both,exit .45s ease-in 3.28s forwards}
 .card[data-style="ivory"]{background:#f5f2e8;animation:fade .35s ease-out both,exit .45s ease-in 3.28s forwards}
@@ -56,8 +60,8 @@ button:hover,button[aria-pressed="true"]{background:#f5f2e8;color:#24342e}
 </style>
 <main>
 <div class="eyebrow">SMOKEY JADE · MOTION STUDIES</div>
-<h1>品牌提問卡｜五款動態試看</h1>
-<p class="intro">先選款式，再切換短、中、長句。可用同一張字卡對照示意背景和真實訪談畫面，檢查人物與字卡的比例。</p>
+<h1>品牌字卡｜提問與金句試看</h1>
+<p class="intro">提問固定左下、金句固定右下。先選卡種與款式，再切換短、中、長句；兩種背景都能對照人物與字卡比例。</p>
 <p class="picker-title">選一款看看</p>
 <div class="presets" role="group" aria-label="字卡款式">
 <button data-style="jade" aria-pressed="true"><span class="no">01</span><span class="name">綠玻璃</span><span class="note">遮罩揭露</span></button>
@@ -66,38 +70,45 @@ button:hover,button[aria-pressed="true"]{background:#f5f2e8;color:#24342e}
 <button data-style="ink" aria-pressed="false"><span class="no">04</span><span class="name">墨綠塊</span><span class="note">錯落滑入</span></button>
 <button data-style="umber" aria-pressed="false"><span class="no">05</span><span class="name">暖根棕</span><span class="note">放大定格</span></button>
 </div>
+<div class="kind-switch" role="group" aria-label="字卡類型"><span>字卡類型</span><button data-kind="question" aria-pressed="true">提問 · 左下</button><button data-kind="quote" aria-pressed="false">金句 · 右下</button></div>
 <div class="background-switch" role="group" aria-label="預覽背景"><span>預覽背景</span><button data-background="photo" aria-pressed="true">訪談實拍</button><button data-background="mock" aria-pressed="false">示意背景</button></div>
-<div class="frame" id="frame" data-background="photo" aria-label="十六比九提問卡動態預覽"><img class="photo" src="./訪談實拍_文森_C0122.jpg" alt="文森訪談雙人實拍影格"><div class="ambient"></div><div class="frame-note" id="frame-note">文森訪談實拍 · 原片 16:9</div><div class="safe" id="safe"></div></div>
+<div class="frame" id="frame" data-background="photo" aria-label="十六比九字卡動態預覽"><img class="photo" src="./訪談實拍_文森_C0122.jpg" alt="文森訪談雙人實拍影格"><div class="ambient"></div><div class="frame-note" id="frame-note">文森訪談實拍 · 文案非訪談原話</div><div class="safe" id="safe" data-kind="question"></div></div>
 <div class="controls"><button data-i="0" aria-pressed="true">短句</button><button data-i="1" aria-pressed="false">中句</button><button data-i="2" aria-pressed="false">長句</button><button id="replay">重播</button><span class="status" id="status">綠玻璃 · 短句 · 8 字</span></div>
-<div class="details"><span><strong>五款</strong>　同一品牌色系，不同材質與節奏</span><span><strong>文字</strong>　三種長度自動貼合寬度</span><span><strong>狀態</strong>　方向試看，尚未定稿</span></div>
+<div class="details"><span><strong>提問</strong>　左下</span><span><strong>金句</strong>　右下</span><span><strong>文案</strong>　示範文字，非訪談原話</span><span><strong>狀態</strong>　方向試看，尚未定稿</span></div>
 </main>
 <script>
-const samples=["你真正想要什麼？","這段關係讓你感到安心嗎？","當對方沒有回應時，你心裡發生了什麼？"];
+const samples={
+  question:["你真正想要什麼？","這段關係讓你感到安心嗎？","當對方沒有回應時，你心裡發生了什麼？"],
+  quote:["先聽，再說。","理解，是靠近彼此的第一步。","好的關係，容得下彼此不同的聲音。"]
+};
 const names={jade:"綠玻璃",ivory:"象牙紙",plain:"純文字",ink:"墨綠塊",umber:"暖根棕"};
 const safe=document.getElementById("safe"),status=document.getElementById("status");
 const frame=document.getElementById("frame"),frameNote=document.getElementById("frame-note");
-let selected=0,style="jade";
-function play(i=selected,s=style){
-  selected=i;style=s;safe.replaceChildren();
+let selected=0,style="jade",kind="question";
+function play(i=selected,s=style,k=kind){
+  selected=i;style=s;kind=k;safe.replaceChildren();safe.dataset.kind=k;
+  const copy=samples[k][i];
   const card=document.createElement("div");card.className="card";card.dataset.style=s;
   const labelBox=document.createElement("div");labelBox.className="label-box";
-  const label=document.createElement("div");label.className="label";label.textContent="A QUESTION TO HOLD";labelBox.append(label);
+  const label=document.createElement("div");label.className="label";label.textContent=k==="question"?"A QUESTION TO HOLD":"KEY INSIGHT";labelBox.append(label);
   const textBox=document.createElement("div");textBox.className="text-box";
-  const question=document.createElement("div");question.className="text";question.textContent=samples[i];
+  const question=document.createElement("div");question.className="text";question.textContent=copy;
   if(s==="plain"){
     question.classList.add("ghost");textBox.append(question);
-    for(const part of ["top","bottom"]){const piece=document.createElement("div");piece.className="text piece "+part;piece.textContent=samples[i];textBox.append(piece)}
+    for(const part of ["top","bottom"]){const piece=document.createElement("div");piece.className="text piece "+part;piece.textContent=copy;textBox.append(piece)}
   }else textBox.append(question);
   const rule=document.createElement("div");rule.className="rule";card.append(labelBox,textBox,rule);safe.append(card);
-  status.textContent=names[s]+" · "+["短句","中句","長句"][i]+" · "+Array.from(samples[i]).length+" 字";
+  status.textContent=(k==="question"?"提問":"金句")+" · "+names[s]+" · "+["短句","中句","長句"][i]+" · "+Array.from(copy).length+" 字";
   document.querySelectorAll("[data-i]").forEach(b=>b.setAttribute("aria-pressed",Number(b.dataset.i)===i?"true":"false"));
   document.querySelectorAll("[data-style]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.style===s?"true":"false"));
+  document.querySelectorAll(".kind-switch [data-kind]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.kind===k?"true":"false"));
 }
 document.querySelectorAll("[data-i]").forEach(b=>b.addEventListener("click",()=>play(Number(b.dataset.i))));
 document.querySelectorAll(".presets [data-style]").forEach(b=>b.addEventListener("click",()=>play(selected,b.dataset.style)));
+document.querySelectorAll(".kind-switch [data-kind]").forEach(b=>b.addEventListener("click",()=>play(selected,style,b.dataset.kind)));
 document.querySelectorAll(".background-switch [data-background]").forEach(b=>b.addEventListener("click",()=>{
   frame.dataset.background=b.dataset.background;
-  frameNote.textContent=b.dataset.background==="photo"?"文森訪談實拍 · 原片 16:9":"畫面示意 · 非正式影片";
+  frameNote.textContent=b.dataset.background==="photo"?"文森訪談實拍 · 文案非訪談原話":"畫面示意 · 非正式影片";
   document.querySelectorAll(".background-switch [data-background]").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
   play();
 }));
