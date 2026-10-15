@@ -23,14 +23,35 @@
 .stage[data-background=photo][data-design=D3] .card{right:auto;left:37%}
 .editor[hidden],#reset[hidden]{display:none}
 .controls button:disabled{opacity:.38;cursor:not-allowed}
+.stage[data-design^=D] .haze{background:radial-gradient(ellipse var(--smoke-w,48%) var(--smoke-h,36%) at var(--smoke-x,58%) var(--smoke-y,90%),var(--smoke-fill1,rgba(27,42,37,.72)) 0%,var(--smoke-fill2,rgba(36,55,48,.42)) 48%,transparent 100%)}
+.card[data-design=A2]::before,.card[data-design^=B]::before,.card[data-design^=B]::after{display:none}
+.card[data-design=A2],.card[data-design^=B]{background:var(--shape-main-background);border-radius:var(--shape-main-radius);padding:var(--shape-main-pady) var(--shape-main-padx)}
+.decor{position:absolute;z-index:2;left:var(--decor-x);top:var(--decor-y);width:var(--decor-w);height:var(--decor-h);display:flex;align-items:center;justify-content:center;text-align:center;white-space:pre-line;line-height:1.2;font:700 clamp(6px,.9vw,12px) Arial,sans-serif;letter-spacing:.08em;color:var(--decor-text);border-radius:var(--decor-radius);background:var(--decor-background);cursor:pointer}
+.decor[hidden]{display:none}
+.card .eyebrow,.card .title,.card .body{position:relative;z-index:1}
+.card[data-design^=D]::before,.card[data-design^=D]::after{width:var(--corner-size,20px);height:var(--corner-size,20px);max-width:none;max-height:none;opacity:var(--corner-opacity,.78);border-color:var(--corner-color,#d0ddd9);border-width:var(--corner-thickness,1px)}
+.shape-editor{border:1px solid #6b8f88;margin:18px 0;padding:15px;background:#243630}
+.shape-editor[hidden]{display:none}
+.shape-editor h2{font:700 17px "PingFang TC",sans-serif;margin:0 0 9px}
+.shape-selector{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px}
+.shape-selector select{background:#f5f2e8;color:#24332e;border:0;padding:7px;font:13px "PingFang TC",sans-serif}
+.shape-tip{font-size:12px;color:#cbd9d3}
+.shape-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:14px}
+.shape-field label{display:flex;justify-content:space-between;gap:7px;font-size:12px;margin-bottom:5px}
+.shape-field input[type=range]{width:100%;accent-color:#f9ecc3}
+.shape-field input[type=color]{width:100%;height:33px;padding:2px;border:1px solid #6b8f88;background:#f5f2e8}
+.shape-field output{color:#f9ecc3}
+.shape-field[hidden]{display:none}
+.palette{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;align-items:center}.palette span{font-size:12px;color:#cbd9d3;margin-right:5px}.palette button{width:26px;height:26px;padding:0;border:2px solid #cbd9d3;border-radius:50%}.palette button:hover,.palette button:focus-visible{outline:2px solid #f9ecc3;outline-offset:2px}
+@media(max-width:700px){.shape-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 <main><h1>品牌字卡第三版｜六款對照</h1><p class="intro">參考資料夾的 A2、B1、B3、D1、D2、D3，逐款比較原圖與訪談實拍效果。</p>
 <div class="tabs" role="group" aria-label="六款字卡"><button data-design="A2">A2 提問底板</button><button data-design="B1">B1 金句底板</button><button data-design="B3">B3 小叮嚀底板</button><button data-design="D1">D1 煙霧金句</button><button data-design="D2">D2 煙霧提問</button><button data-design="D3">D3 煙霧小叮嚀</button></div>
 <div class="controls" role="group" aria-label="預覽方式"><button data-view="live">訪談實拍效果</button><button data-view="reference">參考原圖</button><button data-length="long">長句</button><button data-length="medium">中句</button><button data-length="short">短句</button><button data-background="photo">訪談畫面</button><button data-background="plain">純色畫面</button></div>
 <p class="caption" id="caption"></p>
-<div class="stage" id="stage" data-design="A2" data-view="live" data-background="photo"><img class="photo live" src="./訪談實拍_文森_C0122.jpg" alt="雙人訪談實拍影格"><div class="dim live"></div><div class="haze live"></div><div class="tag live">訪談實拍 · 示範文字非本段原話</div><div class="card live" id="card" data-design="A2"><p class="eyebrow" id="eyebrow"></p><p class="title" id="title"></p><p class="body" id="body-copy"></p></div><img class="reference" id="reference" alt="字卡參考原圖"></div>
+<div class="stage" id="stage" data-design="A2" data-view="live" data-background="photo"><img class="photo live" src="./訪談實拍_文森_C0122.jpg" alt="雙人訪談實拍影格"><div class="dim live"></div><div class="haze live"></div><div class="tag live">訪談實拍 · 示範文字非本段原話</div><div class="card live" id="card" data-design="A2"><span class="decor" id="decor" title="點一下可調整這個標籤"></span><p class="eyebrow" id="eyebrow"></p><p class="title" id="title"></p><p class="body" id="body-copy"></p></div><img class="reference" id="reference" alt="字卡參考原圖"></div>
 <div class="editor" id="editor">
-<div class="control"><label for="depth"><span id="depth-label">效果濃度</span> <output id="depth-value">78%</output></label><input id="depth" type="range" min="15" max="100" value="78"></div>
+<div class="control" id="depth-control"><label for="depth"><span id="depth-label">煙霧整體濃度</span> <output id="depth-value">78%</output></label><input id="depth" type="range" min="15" max="100" value="78"></div>
 <div class="control smoke-only"><label for="smoke-w">煙霧寬度 <output id="smoke-w-value">48%</output></label><input id="smoke-w" type="range" min="15" max="100" value="48"></div>
 <div class="control smoke-only"><label for="smoke-h">煙霧高度 <output id="smoke-h-value">36%</output></label><input id="smoke-h" type="range" min="12" max="90" value="36"></div>
 <div class="control smoke-only"><label for="smoke-x">煙霧左右位置 <output id="smoke-x-value">58%</output></label><input id="smoke-x" type="range" min="0" max="100" value="58"></div>
@@ -42,6 +63,27 @@
 <div class="control"><label for="shift">字卡左右微調 <output id="shift-value">0%</output></label><input id="shift" type="range" min="-20" max="20" value="0"></div>
 <div class="control"><label for="position">距底部 <output id="position-value">10%</output></label><input id="position" type="range" min="3" max="70" value="10"></div>
 </div>
+<section class="shape-editor" id="shape-editor" aria-label="色塊物件調整">
+<h2>色塊物件調整</h2>
+<div class="shape-selector"><label for="shape-object">選取物件</label><select id="shape-object"></select><span class="shape-tip" id="shape-tip"></span></div>
+<div class="shape-grid" id="shape-grid">
+<div class="shape-field" data-field="c1"><label for="shape-c1">起點顏色</label><input id="shape-c1" type="color"></div>
+<div class="shape-field" data-field="c2"><label for="shape-c2">終點顏色</label><input id="shape-c2" type="color"></div>
+<div class="shape-field" data-field="o1"><label for="shape-o1">起點濃度 <output id="shape-o1-value"></output></label><input id="shape-o1" type="range" min="0" max="100"></div>
+<div class="shape-field" data-field="o2"><label for="shape-o2">終點濃度 <output id="shape-o2-value"></output></label><input id="shape-o2" type="range" min="0" max="100"></div>
+<div class="shape-field" data-field="angle"><label for="shape-angle">漸層角度 <output id="shape-angle-value"></output></label><input id="shape-angle" type="range" min="0" max="359"></div>
+<div class="shape-field" data-field="tl"><label for="shape-tl">左上弧度 <output id="shape-tl-value"></output></label><input id="shape-tl" type="range" min="0" max="50"></div>
+<div class="shape-field" data-field="tr"><label for="shape-tr">右上弧度 <output id="shape-tr-value"></output></label><input id="shape-tr" type="range" min="0" max="50"></div>
+<div class="shape-field" data-field="br"><label for="shape-br">右下弧度 <output id="shape-br-value"></output></label><input id="shape-br" type="range" min="0" max="50"></div>
+<div class="shape-field" data-field="bl"><label for="shape-bl">左下弧度 <output id="shape-bl-value"></output></label><input id="shape-bl" type="range" min="0" max="50"></div>
+<div class="shape-field" data-field="px"><label for="shape-px">底板左右留白 <output id="shape-px-value"></output></label><input id="shape-px" type="range" min="1" max="10" step=".1"></div>
+<div class="shape-field" data-field="py"><label for="shape-py">底板上下留白 <output id="shape-py-value"></output></label><input id="shape-py" type="range" min="1" max="10" step=".1"></div>
+<div class="shape-field" data-field="x"><label for="shape-x">左右位置 <output id="shape-x-value"></output></label><input id="shape-x" type="range" min="-45" max="80"></div>
+<div class="shape-field" data-field="y"><label for="shape-y">上下位置 <output id="shape-y-value"></output></label><input id="shape-y" type="range" min="-70" max="100"></div>
+<div class="shape-field" data-field="w"><label for="shape-w">物件寬度 <output id="shape-w-value"></output></label><input id="shape-w" type="range" min="5" max="70"></div>
+<div class="shape-field" data-field="h"><label for="shape-h">物件高度 <output id="shape-h-value"></output></label><input id="shape-h" type="range" min="10" max="130"></div>
+<div class="shape-field" data-field="text"><label for="shape-text">標籤文字顏色</label><input id="shape-text" type="color"></div>
+</div><div class="palette" id="palette"><span>品牌色快選：先點上方顏色欄，再點色票</span></div></section>
 <button id="reset" type="button">重設這款參數</button>
 <div class="feedback"><input id="request" type="text" placeholder="還想怎麼改？例如：B1 再窄一點、透明度再高"><button id="copy">複製修改指令</button><span class="status" id="status" role="status"></span></div>
 <p class="hint">「參考原圖」是資料夾原圖的縮圖；「訪談實拍效果」是可調整的網頁重現示意。第一、二版仍各自保留。此頁不會改動影片或剪輯時間線。</p></main>
@@ -63,6 +105,79 @@ const presets={
 const saved={};
 function controls(){return Object.fromEntries(controlKeys.map(k=>[k,document.getElementById(k).value]))}
 function setControls(data){for(const k of controlKeys)document.getElementById(k).value=data[k]}
+const shapeDefaults={
+ A2:{
+  main:{c1:"#4a635d",c2:"#6b8f88",o1:78,o2:78,angle:105,tl:0,tr:4,br:4,bl:0,px:4,py:3.1},
+  accent:{c1:"#f5f2e8",c2:"#f5f2e8",o1:100,o2:90,angle:90,tl:0,tr:0,br:0,bl:0,x:-6,y:-14,w:18,h:30,text:"#4a635d"}
+ },
+ B1:{
+  main:{c1:"#f5f2e8",c2:"#dde0da",o1:83,o2:76,angle:180,tl:1,tr:1,br:1,bl:1,px:4.2,py:2.7},
+  accent:{c1:"#6b8f88",c2:"#4a635d",o1:100,o2:100,angle:180,tl:0,tr:0,br:0,bl:0,x:-5,y:-13,w:12,h:44,text:"#ffffff"}
+ },
+ B3:{
+  main:{c1:"#f5f2e8",c2:"#dde0da",o1:83,o2:76,angle:180,tl:1,tr:1,br:1,bl:1,px:4.2,py:2.7},
+  accent:{c1:"#6b8f88",c2:"#4a635d",o1:100,o2:100,angle:180,tl:0,tr:0,br:0,bl:0,x:-5,y:-13,w:12,h:44,text:"#ffffff"}
+ },
+ D1:{smoke:{c1:"#1b2a25",c2:"#243730",o1:100,o2:58},corner:{c1:"#d0ddd9",o1:78,w:20,h:1}},
+ D2:{smoke:{c1:"#1b2a25",c2:"#243730",o1:100,o2:58},corner:{c1:"#d0ddd9",o1:78,w:20,h:1}},
+ D3:{smoke:{c1:"#1b2a25",c2:"#243730",o1:100,o2:58},corner:{c1:"#d0ddd9",o1:78,w:20,h:1}}
+};
+const shapeState=structuredClone(shapeDefaults),shapeSelected={};
+const shapeKeys=["c1","c2","o1","o2","angle","tl","tr","br","bl","px","py","x","y","w","h","text"];
+const objectNames={main:"主底板",accent:"標籤／側邊色塊",smoke:"煙霧漸層",corner:"左右角標線"};
+const brandColors=[["煙玉深綠","#4a635d"],["中調煙玉","#6b8f88"],["淺煙玉","#d0ddd9"],["暖根棕","#8b4a2a"],["淺暖根","#edd9cc"],["溫金","#f9ecc3"],["深背景","#2e3e3a"],["象牙","#f5f2e8"],["純白","#ffffff"],["深灰","#333333"],["中灰","#888888"]];
+let activeColorKey="c1";
+for(const [name,hex] of brandColors){const b=document.createElement("button");b.type="button";b.title=name+" "+hex;b.setAttribute("aria-label",name+" "+hex);b.style.background=hex;b.addEventListener("click",()=>{const input=document.getElementById("shape-"+activeColorKey);if(input.closest(".shape-field").hidden)activeColorKey="c1";const target=document.getElementById("shape-"+activeColorKey);target.value=hex;target.dispatchEvent(new Event("input",{bubbles:true}))});document.getElementById("palette").append(b)}
+for(const key of ["c1","c2","text"])document.getElementById("shape-"+key).addEventListener("focus",()=>activeColorKey=key);
+function rgba(hex,alpha){const n=parseInt(hex.slice(1),16);return "rgba("+((n>>16)&255)+","+((n>>8)&255)+","+(n&255)+","+Math.max(0,Math.min(1,alpha))+")"}
+function gradient(o){return "linear-gradient("+o.angle+"deg,"+rgba(o.c1,o.o1/100)+","+rgba(o.c2,o.o2/100)+")"}
+function applyShapes(){
+ const group=shapeState[state.design],decor=document.getElementById("decor");
+ if(group.main){
+  const m=group.main,a=group.accent;
+  card.style.setProperty("--shape-main-background",gradient(m));
+  card.style.setProperty("--shape-main-radius",[m.tl,m.tr,m.br,m.bl].map(v=>v+"%").join(" "));
+  card.style.setProperty("--shape-main-padx",m.px+"%");
+  card.style.setProperty("--shape-main-pady",m.py+"%");
+  decor.hidden=false;
+  decor.textContent=state.design==="A2"?"想一想":state.design==="B1"?"金句\nQUOTE":"NOTE";
+  for(const k of ["x","y","w","h"])decor.style.setProperty("--decor-"+k,a[k]+"%");
+  decor.style.setProperty("--decor-radius",[a.tl,a.tr,a.br,a.bl].map(v=>v+"%").join(" "));
+  decor.style.setProperty("--decor-background",gradient(a));
+  decor.style.setProperty("--decor-text",a.text);
+ }else{
+  decor.hidden=true;
+  const o=group.smoke,depth=Number(document.getElementById("depth").value)/100;
+  stage.style.setProperty("--smoke-fill1",rgba(o.c1,o.o1/100*depth));
+  stage.style.setProperty("--smoke-fill2",rgba(o.c2,o.o2/100*depth));
+  const c=group.corner,unit=stage.clientWidth/1120;
+  card.style.setProperty("--corner-size",Math.max(3,c.w*unit)+"px");
+  card.style.setProperty("--corner-thickness",Math.max(.6,c.h*unit)+"px");
+  card.style.setProperty("--corner-color",c.c1);
+  card.style.setProperty("--corner-opacity",c.o1/100);
+ }
+}
+function updateShapeInspector(){
+ const select=document.getElementById("shape-object"),group=shapeState[state.design];
+ const wanted=shapeSelected[state.design]||Object.keys(group)[0];
+ select.replaceChildren(...Object.keys(group).map(k=>new Option(objectNames[k],k)));
+ select.value=wanted;shapeSelected[state.design]=wanted;
+ document.querySelector('[data-field="w"] label').firstChild.textContent=wanted==="corner"?"角標長度 ":"物件寬度 ";
+ document.querySelector('[data-field="h"] label').firstChild.textContent=wanted==="corner"?"線條粗細 ":"物件高度 ";
+ document.getElementById("shape-h").min=wanted==="corner"?1:10;
+ document.getElementById("shape-h").max=wanted==="corner"?8:130;
+ const object=group[wanted];
+ for(const key of shapeKeys){
+  const field=document.querySelector('[data-field="'+key+'"]');
+  field.hidden=!(key in object);
+  if(key in object){
+   document.getElementById("shape-"+key).value=object[key];
+   const output=document.getElementById("shape-"+key+"-value");
+   if(output)output.textContent=object[key]+(key==="angle"?"°":"%");
+  }
+ }
+ document.getElementById("shape-tip").textContent=wanted==="main"?"位置與寬度用上方「字卡」滑桿；此處調底板留白、四角和漸層。":wanted==="accent"?"可直接點畫面中的標籤，再調位置、尺寸、四角和漸層。":wanted==="smoke"?"煙霧範圍與位置用上方滑桿；此處調兩端的顏色與濃度。":"調整左右兩個角標的線色、濃度、長度與粗細。";
+}
 
 function fitCard(){
  card.style.setProperty("--fit",1);
@@ -104,15 +219,18 @@ function render(){
  stage.style.setProperty("--card-width",val("card-width")+"%");
  stage.style.setProperty("--card-shift",val("shift")+"%");
  stage.style.setProperty("--bottom",val("position")+"%");
+ applyShapes();
  for(const key of controlKeys)
   document.getElementById(key+"-value").textContent=val(key)+"%";
  document.querySelectorAll(".smoke-only").forEach(e=>e.hidden=!design.startsWith("D"));
- document.getElementById("depth-label").textContent=design.startsWith("D")?"煙霧濃度":"底板濃度";
+ document.getElementById("depth-control").hidden=!design.startsWith("D");
  document.getElementById("editor").hidden=view==="reference";
+ document.getElementById("shape-editor").hidden=view==="reference";
  document.getElementById("reset").hidden=view==="reference";
  document.querySelectorAll("button[data-length],button[data-background]").forEach(b=>b.disabled=view==="reference");
  for(const key of ["design","view","length","background"])
   document.querySelectorAll("button[data-"+key+"]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset[key]===state[key])));
+ updateShapeInspector();
  requestAnimationFrame(fitCard);
 }
 for(const key of ["design","view","length","background"])
@@ -124,7 +242,17 @@ for(const key of ["design","view","length","background"])
   render();
  }));
 for(const key of controlKeys)document.getElementById(key).addEventListener("input",render);
-document.getElementById("reset").addEventListener("click",()=>{setControls(presets[state.design]);saved[state.design]=controls();render()});
-new ResizeObserver(()=>requestAnimationFrame(fitCard)).observe(stage);
-document.getElementById("copy").addEventListener("click",async()=>{const extra=document.getElementById("request").value.trim();const msg="請修改品牌字卡第三版 "+state.design+" "+info[state.design].name+"："+state.length+"、效果濃度 "+document.getElementById("depth").value+"%、煙霧寬高 "+document.getElementById("smoke-w").value+"%／"+document.getElementById("smoke-h").value+"%、煙霧中心 "+document.getElementById("smoke-x").value+"%／"+document.getElementById("smoke-y").value+"%、畫面壓暗 "+document.getElementById("dim").value+"%、字卡大小 "+document.getElementById("size").value+"%、文字大小 "+document.getElementById("font").value+"%、字卡寬度 "+document.getElementById("card-width").value+"%、左右微調 "+document.getElementById("shift").value+"%、距底部 "+document.getElementById("position").value+"%。"+(extra?"另外："+extra:"")+"請保留第一版、第二版及第三版其他款。";document.getElementById("status").textContent="正在複製…";try{await navigator.clipboard.writeText(msg)}catch{const t=document.createElement("textarea");t.value=msg;document.body.append(t);t.select();if(!document.execCommand("copy")){t.remove();document.getElementById("status").textContent="瀏覽器未允許複製，請手動輸入。";return}t.remove()}document.getElementById("status").textContent="已複製，回到對話貼上即可。"});render();
+document.getElementById("shape-object").addEventListener("change",e=>{shapeSelected[state.design]=e.target.value;updateShapeInspector()});
+for(const key of shapeKeys)document.getElementById("shape-"+key).addEventListener("input",e=>{
+ const object=shapeState[state.design][shapeSelected[state.design]];
+ object[key]=e.target.type==="color"?e.target.value:Number(e.target.value);
+ const output=document.getElementById("shape-"+key+"-value");
+ if(output)output.textContent=object[key]+(key==="angle"?"°":"%");
+ applyShapes();requestAnimationFrame(fitCard);
+});
+document.getElementById("decor").addEventListener("click",e=>{e.stopPropagation();shapeSelected[state.design]="accent";updateShapeInspector();document.getElementById("shape-editor").scrollIntoView({block:"nearest",behavior:"smooth"})});
+card.addEventListener("click",()=>{if(shapeState[state.design].main){shapeSelected[state.design]="main";updateShapeInspector()}});
+document.getElementById("reset").addEventListener("click",()=>{setControls(presets[state.design]);saved[state.design]=controls();shapeState[state.design]=structuredClone(shapeDefaults[state.design]);shapeSelected[state.design]=Object.keys(shapeState[state.design])[0];render()});
+new ResizeObserver(()=>{applyShapes();requestAnimationFrame(fitCard)}).observe(stage);
+document.getElementById("copy").addEventListener("click",async()=>{const extra=document.getElementById("request").value.trim();const msg="請修改品牌字卡第三版 "+state.design+" "+info[state.design].name+"："+state.length+"、效果濃度 "+document.getElementById("depth").value+"%、煙霧寬高 "+document.getElementById("smoke-w").value+"%／"+document.getElementById("smoke-h").value+"%、煙霧中心 "+document.getElementById("smoke-x").value+"%／"+document.getElementById("smoke-y").value+"%、畫面壓暗 "+document.getElementById("dim").value+"%、字卡大小 "+document.getElementById("size").value+"%、文字大小 "+document.getElementById("font").value+"%、字卡寬度 "+document.getElementById("card-width").value+"%、左右微調 "+document.getElementById("shift").value+"%、距底部 "+document.getElementById("position").value+"%。"+(extra?"另外："+extra:"")+"請保留第一版、第二版及第三版其他款。色塊參數："+JSON.stringify(shapeState[state.design])+"。";document.getElementById("status").textContent="正在複製…";try{await navigator.clipboard.writeText(msg)}catch{const t=document.createElement("textarea");t.value=msg;document.body.append(t);t.select();if(!document.execCommand("copy")){t.remove();document.getElementById("status").textContent="瀏覽器未允許複製，請手動輸入。";return}t.remove()}document.getElementById("status").textContent="已複製，回到對話貼上即可。"});render();
 </script></html>
