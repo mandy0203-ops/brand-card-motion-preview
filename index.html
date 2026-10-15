@@ -6,7 +6,7 @@
 <style>
 :root{color-scheme:dark;background:#18211f;color:#f5f2e8;font-family:"Noto Sans CJK TC","PingFang TC",sans-serif}
 *{box-sizing:border-box}body{margin:0;padding:28px}main{max-width:1120px;margin:auto}
-.eyebrow{color:#c98a5e;font-size:12px;letter-spacing:.25em;font-weight:700}
+.eyebrow{color:#F9ECC3;font-size:12px;letter-spacing:.25em;font-weight:700}
 h1{font:700 clamp(26px,4vw,44px) "Noto Serif CJK TC",serif;margin:10px 0 8px}
 .intro{color:#b7c3bd;line-height:1.7;margin:0 0 20px}
 .picker-title{font-size:12px;color:#aebdb4;letter-spacing:.14em;margin:0 0 10px}
@@ -35,13 +35,31 @@ button:hover,button[aria-pressed="true"]{background:#f5f2e8;color:#24342e}
 .card[data-style="ink"]{background:#2e3e3a;animation:slide .55s cubic-bezier(.16,1,.3,1) both,exit .45s ease-in 3.28s forwards}
 .card[data-style="umber"]{background:#8b4a2a;animation:fade .25s ease-out both,exit .45s ease-in 3.28s forwards}
 .label-box,.text-box{overflow:hidden}.text-box{position:relative}
-.label{font:600 clamp(9px,.95vw,11px) "Helvetica Neue",Arial,sans-serif;letter-spacing:.4em;color:rgba(245,242,232,.78);white-space:nowrap;animation:up .5s ease-out .18s both}
-.text{font:700 clamp(18px,2.1vw,26px)/1.25 "Noto Serif CJK TC","Songti TC",serif;letter-spacing:.03em;color:#fbf7ef;white-space:nowrap;margin-top:8px;animation:up .65s cubic-bezier(.16,1,.3,1) .33s both}
-.rule{width:100%;height:1px;background:#c98a5e;margin-top:8px;transform-origin:left;animation:rule .5s ease-out .62s both}
+.label{font:600 clamp(9px,.95vw,11px) "Helvetica Neue",Arial,sans-serif;letter-spacing:.4em;color:#f5f2e8;white-space:nowrap;animation:up .5s ease-out .18s both}
+.text{font:700 clamp(18px,2.1vw,26px)/1.25 "Noto Serif CJK TC","Songti TC",serif;letter-spacing:.03em;color:#f5f2e8;white-space:nowrap;margin-top:8px;animation:up .65s cubic-bezier(.16,1,.3,1) .33s both}
+.rule{width:100%;height:1px;background:#d0ddd9;margin-top:8px;transform-origin:left;animation:rule .5s ease-out .62s both}
 .card[data-style="ivory"] .label{color:#4a635d}.card[data-style="ivory"] .text{color:#2e3e3a;animation:focus .85s ease-out .15s both}.card[data-style="ivory"] .rule{background:#8b4a2a}
-.card[data-style="plain"] .label{color:#c98a5e}.card[data-style="plain"] .rule{background:#f5f2e8}
+.card[data-style="plain"] .label{color:#F9ECC3}.card[data-style="plain"] .rule{background:#f5f2e8}
 .card[data-style="ink"] .label{animation:left .58s ease-out .16s both}.card[data-style="ink"] .text{animation:right .65s ease-out .3s both}.card[data-style="ink"] .rule,.card[data-style="umber"] .rule{background:#f5f2e8}
 .card[data-style="umber"] .text{animation:zoom .72s cubic-bezier(.16,1,.3,1) .22s both}
+.card[data-kind="question"][data-style="jade"]{background:#4a635d}
+.card[data-kind="question"][data-style="ivory"]{background:#f5f2e8}
+.card[data-kind="question"][data-style="ivory"] .label,.card[data-kind="question"][data-style="plain"] .label{color:#4a635d}
+.card[data-kind="question"][data-style="ivory"] .text,.card[data-kind="question"][data-style="plain"] .text{color:#2e3e3a}
+.card[data-kind="question"][data-style="ivory"] .rule,.card[data-kind="question"][data-style="plain"] .rule{background:#6b8f88}
+.card[data-kind="question"][data-style="plain"]{background:#fff;padding-left:14px;padding-right:14px}
+.card[data-kind="question"][data-style="ink"]{background:#2e3e3a}
+.card[data-kind="question"][data-style="umber"]{background:#f5f2e8}
+.card[data-kind="question"][data-style="umber"] .label{color:#4a635d}
+.card[data-kind="question"][data-style="umber"] .text{color:#2e3e3a}
+.card[data-kind="question"][data-style="umber"] .rule{background:#6b8f88}
+.card[data-kind="quote"][data-style="jade"],.card[data-kind="quote"][data-style="ink"],.card[data-kind="quote"][data-style="umber"]{background:#8b4a2a}
+.card[data-kind="quote"][data-style="ivory"]{background:#edd9cc}
+.card[data-kind="quote"][data-style="plain"]{background:#f9ecc3;padding-left:14px;padding-right:14px}
+.card[data-kind="quote"][data-style="ivory"] .label,.card[data-kind="quote"][data-style="plain"] .label{color:#8b4a2a}
+.card[data-kind="quote"][data-style="ivory"] .text,.card[data-kind="quote"][data-style="plain"] .text{color:#2e3e3a}
+.card[data-kind="quote"][data-style="ivory"] .rule,.card[data-kind="quote"][data-style="plain"] .rule{background:#8b4a2a}
+.card[data-kind="quote"][data-style="jade"] .rule,.card[data-kind="quote"][data-style="ink"] .rule,.card[data-kind="quote"][data-style="umber"] .rule{background:#f9ecc3}
 .ghost{visibility:hidden;animation:none!important}.piece{position:absolute;left:0;top:0;margin-top:8px}
 .top{clip-path:inset(0 0 50% 0);animation:left .67s cubic-bezier(.16,1,.3,1) .25s both}
 .bottom{clip-path:inset(50% 0 0 0);animation:right .67s cubic-bezier(.16,1,.3,1) .25s both}
@@ -56,12 +74,12 @@ button:hover,button[aria-pressed="true"]{background:#f5f2e8;color:#24342e}
 .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}.controls button{min-width:68px;text-align:center}
 .status{margin-left:auto;color:#b7c3bd;font-size:13px}.details{display:flex;gap:28px;flex-wrap:wrap;color:#aebdb4;font-size:13px;line-height:1.7;margin-top:18px}.details strong{color:#f5f2e8}
 @media(max-width:800px){.presets{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:700px){body{padding:18px}.card{padding:7px}.text{font-size:clamp(9px,2.1vw,16px);margin-top:4px}.piece{margin-top:4px}.label{font-size:7px}.rule{margin-top:4px}.status{width:100%;margin-left:0}}
+@media(max-width:700px){body{padding:18px}.card{padding:7px}.card[data-style="plain"]{padding-left:7px;padding-right:7px}.text{font-size:clamp(8px,2vw,16px);margin-top:4px}.piece{margin-top:4px}.label{font-size:7px}.rule{margin-top:4px}.status{width:100%;margin-left:0}}
 </style>
 <main>
 <div class="eyebrow">SMOKEY JADE · MOTION STUDIES</div>
 <h1>品牌字卡｜提問與金句試看</h1>
-<p class="intro">提問固定左下、金句固定右下。先選卡種與款式，再切換短、中、長句；兩種背景都能對照人物與字卡比例。</p>
+<p class="intro">提問固定左下，使用煙玉綠或白／象牙底；金句固定右下，使用暖根棕與同色系淺色。切換卡種時，五種動態會套用對應配色。</p>
 <p class="picker-title">選一款看看</p>
 <div class="presets" role="group" aria-label="字卡款式">
 <button data-style="jade" aria-pressed="true"><span class="no">01</span><span class="name">綠玻璃</span><span class="note">遮罩揭露</span></button>
@@ -81,16 +99,19 @@ const samples={
   question:["你真正想要什麼？","這段關係讓你感到安心嗎？","當對方沒有回應時，你心裡發生了什麼？"],
   quote:["先聽，再說。","理解，是靠近彼此的第一步。","好的關係，容得下彼此不同的聲音。"]
 };
-const names={jade:"綠玻璃",ivory:"象牙紙",plain:"純文字",ink:"墨綠塊",umber:"暖根棕"};
+const names={
+  question:{jade:"煙玉綠",ivory:"象牙底",plain:"純白卡",ink:"深綠塊",umber:"煙玉點綴"},
+  quote:{jade:"暖根棕",ivory:"淺暖棕",plain:"溫金底",ink:"咖啡塊",umber:"暖根重點"}
+};
 const safe=document.getElementById("safe"),status=document.getElementById("status");
 const frame=document.getElementById("frame"),frameNote=document.getElementById("frame-note");
 let selected=0,style="jade",kind="question";
 function play(i=selected,s=style,k=kind){
   selected=i;style=s;kind=k;safe.replaceChildren();safe.dataset.kind=k;
   const copy=samples[k][i];
-  const card=document.createElement("div");card.className="card";card.dataset.style=s;
+  const card=document.createElement("div");card.className="card";card.dataset.style=s;card.dataset.kind=k;
   const labelBox=document.createElement("div");labelBox.className="label-box";
-  const label=document.createElement("div");label.className="label";label.textContent=k==="question"?"A QUESTION TO HOLD":"KEY INSIGHT";labelBox.append(label);
+  const label=document.createElement("div");label.className="label";label.textContent=k==="question"?"PAUSE & REFLECT":"WORTH REMEMBERING";labelBox.append(label);
   const textBox=document.createElement("div");textBox.className="text-box";
   const question=document.createElement("div");question.className="text";question.textContent=copy;
   if(s==="plain"){
@@ -98,9 +119,9 @@ function play(i=selected,s=style,k=kind){
     for(const part of ["top","bottom"]){const piece=document.createElement("div");piece.className="text piece "+part;piece.textContent=copy;textBox.append(piece)}
   }else textBox.append(question);
   const rule=document.createElement("div");rule.className="rule";card.append(labelBox,textBox,rule);safe.append(card);
-  status.textContent=(k==="question"?"提問":"金句")+" · "+names[s]+" · "+["短句","中句","長句"][i]+" · "+Array.from(copy).length+" 字";
+  status.textContent=(k==="question"?"提問":"金句")+" · "+names[k][s]+" · "+["短句","中句","長句"][i]+" · "+Array.from(copy).length+" 字";
   document.querySelectorAll("[data-i]").forEach(b=>b.setAttribute("aria-pressed",Number(b.dataset.i)===i?"true":"false"));
-  document.querySelectorAll("[data-style]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.style===s?"true":"false"));
+  document.querySelectorAll(".presets [data-style]").forEach(b=>{b.setAttribute("aria-pressed",b.dataset.style===s?"true":"false");b.querySelector(".name").textContent=names[k][b.dataset.style]});
   document.querySelectorAll(".kind-switch [data-kind]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.kind===k?"true":"false"));
 }
 document.querySelectorAll("[data-i]").forEach(b=>b.addEventListener("click",()=>play(Number(b.dataset.i))));
