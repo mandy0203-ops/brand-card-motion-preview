@@ -79,7 +79,7 @@ button:hover,button[aria-pressed="true"]{background:#f5f2e8;color:#24342e}
 <main>
 <div class="eyebrow">SMOKEY JADE · MOTION STUDIES</div>
 <h1>品牌字卡｜提問與金句試看</h1>
-<p class="intro">提問固定左下，使用煙玉綠或白／象牙底；金句固定右下，使用暖根棕與同色系淺色。切換卡種時，五種動態會套用對應配色。</p>
+<p class="intro">已選定：提問卡在左下使用 01 煙玉綠；金句卡在右下使用 04 咖啡塊。切換卡種會直接顯示選定款式，下方仍可試看其他動態。</p>
 <p class="picker-title">選一款看看</p>
 <div class="presets" role="group" aria-label="字卡款式">
 <button data-style="jade" aria-pressed="true"><span class="no">01</span><span class="name">綠玻璃</span><span class="note">遮罩揭露</span></button>
@@ -92,7 +92,7 @@ button:hover,button[aria-pressed="true"]{background:#f5f2e8;color:#24342e}
 <div class="background-switch" role="group" aria-label="預覽背景"><span>預覽背景</span><button data-background="photo" aria-pressed="true">訪談實拍</button><button data-background="mock" aria-pressed="false">示意背景</button></div>
 <div class="frame" id="frame" data-background="photo" aria-label="十六比九字卡動態預覽"><img class="photo" src="./訪談實拍_文森_C0122.jpg" alt="文森訪談雙人實拍影格"><div class="ambient"></div><div class="frame-note" id="frame-note">文森訪談實拍 · 文案非訪談原話</div><div class="safe" id="safe" data-kind="question"></div></div>
 <div class="controls"><button data-i="0" aria-pressed="true">短句</button><button data-i="1" aria-pressed="false">中句</button><button data-i="2" aria-pressed="false">長句</button><button id="replay">重播</button><span class="status" id="status">綠玻璃 · 短句 · 8 字</span></div>
-<div class="details"><span><strong>提問</strong>　左下</span><span><strong>金句</strong>　右下</span><span><strong>文案</strong>　示範文字，非訪談原話</span><span><strong>狀態</strong>　方向試看，尚未定稿</span></div>
+<div class="details"><span><strong>提問</strong>　01 煙玉綠 · 左下</span><span><strong>金句</strong>　04 咖啡塊 · 右下</span><span><strong>文案</strong>　示範文字，非訪談原話</span><span><strong>狀態</strong>　款式已選，製作規格待定</span></div>
 </main>
 <script>
 const samples={
@@ -126,7 +126,7 @@ function play(i=selected,s=style,k=kind){
 }
 document.querySelectorAll("[data-i]").forEach(b=>b.addEventListener("click",()=>play(Number(b.dataset.i))));
 document.querySelectorAll(".presets [data-style]").forEach(b=>b.addEventListener("click",()=>play(selected,b.dataset.style)));
-document.querySelectorAll(".kind-switch [data-kind]").forEach(b=>b.addEventListener("click",()=>play(selected,style,b.dataset.kind)));
+document.querySelectorAll(".kind-switch [data-kind]").forEach(b=>b.addEventListener("click",()=>play(selected,b.dataset.kind==="question"?"jade":"ink",b.dataset.kind)));
 document.querySelectorAll(".background-switch [data-background]").forEach(b=>b.addEventListener("click",()=>{
   frame.dataset.background=b.dataset.background;
   frameNote.textContent=b.dataset.background==="photo"?"文森訪談實拍 · 文案非訪談原話":"畫面示意 · 非正式影片";
