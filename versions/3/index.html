@@ -4,21 +4,99 @@
 <title>品牌字卡第三版｜六款對照</title>
 <style>
 :root{font-family:"PingFang TC",sans-serif;background:#1d2b27;color:#f5f2e8}*{box-sizing:border-box}body{margin:0;padding:24px}main{max-width:1120px;margin:auto}h1{font:700 clamp(24px,3vw,38px) "Songti TC",serif;margin:0 0 6px}p{line-height:1.6}.intro,.hint,.caption{font-size:13px;color:#cbd9d3}.intro{margin:0}.tabs,.controls{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}button{border:1px solid #6b8f88;background:#273a34;color:#f5f2e8;padding:9px 13px;font:600 13px "PingFang TC",sans-serif;cursor:pointer}button[aria-pressed=true]{background:#f5f2e8;color:#24332e}button:focus-visible,input:focus-visible{outline:3px solid #f9ecc3;outline-offset:2px}.controls{margin:10px 0}.controls button{font-size:12px}.caption strong{color:#f9ecc3}.stage{position:relative;aspect-ratio:16/9;overflow:hidden;background:#2e3e3a;isolation:isolate}.photo,.reference{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.reference{display:none;z-index:9}.stage[data-view=reference] .reference{display:block}.stage[data-view=reference] .live{display:none}.stage[data-background=plain] .photo{display:none}.dim{position:absolute;inset:0;background:#0004}.tag{position:absolute;top:3%;left:3%;z-index:7;padding:5px 8px;background:#14201bbb;font-size:clamp(7px,.9vw,11px)}.haze{position:absolute;inset:0;z-index:2;display:none;background:radial-gradient(ellipse 73% 57% at 53% 91%,rgba(27,42,37,var(--depth,.88)),rgba(36,55,48,.62) 48%,transparent 100%)}.stage[data-design^=D] .haze{display:block}.stage[data-design=D2] .haze{background:radial-gradient(ellipse 72% 58% at 39% 89%,rgba(27,42,37,var(--depth,.88)),rgba(36,55,48,.55) 52%,transparent 100%)}.stage[data-design=D3] .haze{background:radial-gradient(ellipse 65% 70% at 75% 82%,rgba(27,42,37,var(--depth,.88)),rgba(36,55,48,.55) 52%,transparent 100%)}.card{position:absolute;z-index:3;bottom:var(--bottom,10%);color:#f5f2e8;transform:scale(var(--scale,1));transform-origin:bottom center}.eyebrow{font:700 clamp(7px,1vw,12px) Arial;letter-spacing:.2em;color:#f9ecc3;margin:0 0 1em}.title{font:700 clamp(12px,2.55vw,31px)/1.48 "Songti TC",serif;letter-spacing:.03em;margin:0;text-wrap:balance}.body{font:500 clamp(9px,1.7vw,20px)/1.55 "Songti TC",serif;margin:1em 0 0}.card[data-design^=D]{text-shadow:0 1px 3px #17231e}.card[data-design=D1]{left:16%;width:68%;text-align:center}.card[data-design=D2]{left:12%;width:62%;text-align:center}.card[data-design=D3]{right:6%;width:45%}.card[data-design^=D]:before,.card[data-design^=D]:after{content:"";position:absolute;width:2vw;height:2vw;max-width:23px;max-height:23px}.card[data-design^=D]:before{left:-5%;top:-12%;border-top:1px solid #d0ddd9;border-left:1px solid #d0ddd9}.card[data-design^=D]:after{right:-5%;bottom:-13%;border-right:1px solid #d0ddd9;border-bottom:1px solid #d0ddd9}.card[data-design=A2]{left:22%;width:58%;padding:3.1% 4% 3.4%;background:linear-gradient(105deg,rgba(74,99,93,var(--depth,.88)),#6b8f88bb);border-radius:0 2vw 2vw 0;box-shadow:0 12px 36px #10191555}.card[data-design=A2]:before{content:"想一想";position:absolute;left:-6%;top:-14%;padding:1.2% 4%;background:#f5f2e8;color:#4a635d;font-size:clamp(7px,1vw,13px)}.card[data-design=A2] .title:before{content:"Q  ";font-style:italic;color:#f9ecc3}.card[data-design^=B]{background:linear-gradient(180deg,#f5f2e8f5,#dde0dad9);color:#333;box-shadow:0 12px 38px #0e17133d;border-radius:.45vw;padding:2.7% 3.3% 3% 4.2%}.card[data-design=B1]{right:6%;width:61%}.card[data-design=B3]{right:5%;width:46%}.card[data-design^=B]:before{content:"";position:absolute;left:-5%;top:-13%;width:12%;height:44%;background:linear-gradient(#6b8f88,#4a635d);z-index:-1}.card[data-design=B1]:after{content:"金句／QUOTE";position:absolute;left:-3%;top:-9%;color:white;font:700 clamp(7px,.9vw,12px) Arial}.card[data-design=B3]:after{content:"NOTE";position:absolute;left:-3%;top:-8%;color:white;font:700 clamp(7px,.9vw,12px) Arial}.card[data-design^=B] .eyebrow,.card[data-design=B3] .title{color:#4a635d}.card[data-design=B3] .title{border-bottom:1px solid #6b8f88;padding-bottom:.35em}.card[data-design=B3] .body{margin-top:.55em}.card[data-design=A2] .eyebrow,.card[data-design=B1] .body,.card[data-design=A2] .body,.card[data-design=D1] .body,.card[data-design=D2] .body{display:none}.editor{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0}.control label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px}.control output{color:#f9ecc3}.control input{width:100%;accent-color:#f9ecc3}.feedback{display:flex;gap:8px;flex-wrap:wrap}.feedback input{flex:1;min-width:250px;border:0;padding:10px;font-size:14px}.status{color:#f9ecc3;font-size:12px}@media(max-width:700px){body{padding:13px}.tabs button,.controls button{font-size:11px;padding:7px 9px}.eyebrow{font-size:5px;margin-bottom:3px}.title{font-size:clamp(8px,2.2vw,15px);line-height:1.3}.body{font-size:clamp(6px,1.6vw,11px);line-height:1.35}.card[data-design=A2]:before,.card[data-design=B1]:after,.card[data-design=B3]:after{font-size:5px}.editor{grid-template-columns:1fr 1fr}.control label{font-size:11px}}
+
+/* V3 局部煙霧與文字安全範圍 */
+.dim{background:rgba(0,0,0,var(--dim,.08))}
+.stage[data-design^=D] .haze{background:radial-gradient(ellipse var(--smoke-w,48%) var(--smoke-h,36%) at var(--smoke-x,58%) var(--smoke-y,90%),rgba(27,42,37,var(--depth,.78)) 0%,rgba(36,55,48,calc(var(--depth,.78)*.58)) 48%,transparent 100%)}
+.card{width:var(--card-width);transform:translateX(calc(var(--card-shift,0%) + var(--safe-x,0px))) translateY(var(--safe-y,0px)) scale(calc(var(--scale,1) * var(--safe-scale,1)))}
+.title,.body{overflow-wrap:anywhere;word-break:normal}
+.title{font-size:clamp(8px,calc(2.55vw * var(--font-scale,1) * var(--fit,1)),38px)}
+.body{font-size:clamp(6px,calc(1.7vw * var(--font-scale,1) * var(--fit,1)),25px)}
+.card[data-design^=B] .title,.card[data-design=A2] .title{max-width:100%}
+@media(max-width:700px){.title{font-size:clamp(6px,calc(2.2vw * var(--font-scale,1) * var(--fit,1)),19px)}.body{font-size:clamp(5px,calc(1.6vw * var(--font-scale,1) * var(--fit,1)),14px)}}
 </style>
 <main><h1>品牌字卡第三版｜六款對照</h1><p class="intro">參考資料夾的 A2、B1、B3、D1、D2、D3，逐款比較原圖與訪談實拍效果。</p>
 <div class="tabs" role="group" aria-label="六款字卡"><button data-design="A2">A2 提問底板</button><button data-design="B1">B1 金句底板</button><button data-design="B3">B3 小叮嚀底板</button><button data-design="D1">D1 煙霧金句</button><button data-design="D2">D2 煙霧提問</button><button data-design="D3">D3 煙霧小叮嚀</button></div>
 <div class="controls" role="group" aria-label="預覽方式"><button data-view="live">訪談實拍效果</button><button data-view="reference">參考原圖</button><button data-length="long">長句</button><button data-length="medium">中句</button><button data-length="short">短句</button><button data-background="photo">訪談畫面</button><button data-background="plain">純色畫面</button></div>
 <p class="caption" id="caption"></p>
 <div class="stage" id="stage" data-design="A2" data-view="live" data-background="photo"><img class="photo live" src="./訪談實拍_文森_C0122.jpg" alt="雙人訪談實拍影格"><div class="dim live"></div><div class="haze live"></div><div class="tag live">訪談實拍 · 示範文字非本段原話</div><div class="card live" id="card" data-design="A2"><p class="eyebrow" id="eyebrow"></p><p class="title" id="title"></p><p class="body" id="body-copy"></p></div><img class="reference" id="reference" alt="字卡參考原圖"></div>
-<div class="editor"><div class="control"><label for="depth">效果濃度 <output id="depth-value">88%</output></label><input id="depth" type="range" min="40" max="100" value="88"></div><div class="control"><label for="size">整體大小 <output id="size-value">100%</output></label><input id="size" type="range" min="70" max="125" value="100"></div><div class="control"><label for="position">距底部 <output id="position-value">10%</output></label><input id="position" type="range" min="4" max="28" value="10"></div></div>
+<div class="editor" id="editor">
+<div class="control"><label for="depth"><span id="depth-label">效果濃度</span> <output id="depth-value">78%</output></label><input id="depth" type="range" min="15" max="100" value="78"></div>
+<div class="control smoke-only"><label for="smoke-w">煙霧寬度 <output id="smoke-w-value">48%</output></label><input id="smoke-w" type="range" min="15" max="100" value="48"></div>
+<div class="control smoke-only"><label for="smoke-h">煙霧高度 <output id="smoke-h-value">36%</output></label><input id="smoke-h" type="range" min="12" max="90" value="36"></div>
+<div class="control smoke-only"><label for="smoke-x">煙霧左右位置 <output id="smoke-x-value">58%</output></label><input id="smoke-x" type="range" min="0" max="100" value="58"></div>
+<div class="control smoke-only"><label for="smoke-y">煙霧上下位置 <output id="smoke-y-value">90%</output></label><input id="smoke-y" type="range" min="40" max="120" value="90"></div>
+<div class="control"><label for="dim">畫面壓暗 <output id="dim-value">8%</output></label><input id="dim" type="range" min="0" max="45" value="8"></div>
+<div class="control"><label for="size">字卡整體大小 <output id="size-value">100%</output></label><input id="size" type="range" min="70" max="125" value="100"></div>
+<div class="control"><label for="font">文字大小 <output id="font-value">100%</output></label><input id="font" type="range" min="65" max="150" value="100"></div>
+<div class="control"><label for="card-width">字卡寬度 <output id="card-width-value">58%</output></label><input id="card-width" type="range" min="32" max="78" value="58"></div>
+<div class="control"><label for="shift">字卡左右微調 <output id="shift-value">0%</output></label><input id="shift" type="range" min="-20" max="20" value="0"></div>
+<div class="control"><label for="position">距底部 <output id="position-value">10%</output></label><input id="position" type="range" min="3" max="28" value="10"></div>
+</div>
 <div class="feedback"><input id="request" type="text" placeholder="還想怎麼改？例如：B1 再窄一點、透明度再高"><button id="copy">複製修改指令</button><span class="status" id="status" role="status"></span></div>
 <p class="hint">「參考原圖」是資料夾原圖的縮圖；「訪談實拍效果」是可調整的網頁重現示意。第一、二版仍各自保留。此頁不會改動影片或剪輯時間線。</p></main>
 <script>
 const info={A2:{name:"單人居中 · 提問",kind:"question",desc:"煙玉綠半透明橫板，加上象牙色提問標籤。"},B1:{name:"雙人訪談 · 金句",kind:"quote",desc:"象牙白漸層底板與煙玉綠直式標籤。"},B3:{name:"人物置左 · 小叮嚀",kind:"note",desc:"右側象牙白底板、煙玉綠標題與細分隔線。"},D1:{name:"雙人訪談 · 金句",kind:"quote",desc:"下方深綠煙霧漸層與極細角標。"},D2:{name:"單人居中 · 提問",kind:"question",desc:"下方深綠煙霧漸層與居中提問。"},D3:{name:"人物置左 · 小叮嚀",kind:"note",desc:"右側深綠煙霧漸層與細角標。"}};
 const samples={quote:{long:["當發現可以改善的事情，最該高興的，是不用再抱持著錯誤的想法，繼續生活下去。",""],medium:["理解，是靠近彼此的第一步。",""],short:["先聽，再說。",""]},question:{long:["你上一次被好好聽見，是什麼時候？",""],medium:["什麼讓你感到安心？",""],short:["你在意什麼？",""]},note:{long:["練習題記得做","把握住每個小練習題，不僅能更好地梳理想法，也能發現關係中潛在的卡點。"],medium:["練習題記得做","花幾分鐘寫下來，會看見新的線索。"],short:["練習題記得做","先從一個小問題開始。"]}};
 const labels={quote:"金句 · WORTH REMEMBERING",question:"想一想 · PAUSE & REFLECT",note:"貼心小叮嚀 · NOTE"};
-const stage=document.getElementById("stage"),card=document.getElementById("card"),ref=document.getElementById("reference"),caption=document.getElementById("caption");let state={design:"A2",view:"live",length:"long",background:"photo"};
-function render(){const {design,view,length,background}=state,d=info[design],pair=samples[d.kind][length];stage.dataset.design=design;stage.dataset.view=view;stage.dataset.background=background;card.dataset.design=design;document.getElementById("eyebrow").textContent=labels[d.kind];document.getElementById("title").textContent=pair[0];document.getElementById("body-copy").textContent=pair[1];ref.src="./references/"+design+".jpg";ref.alt=design+" "+d.name+"參考原圖";caption.innerHTML="<strong>"+design+" "+d.name+"</strong>｜"+d.desc+(view==="reference"?" 原圖用來對照造型；長中短句與調整桿在訪談實拍效果中顯示。":"");stage.style.setProperty("--depth",document.getElementById("depth").value/100);stage.style.setProperty("--scale",document.getElementById("size").value/100);stage.style.setProperty("--bottom",document.getElementById("position").value+"%");for(const key of ["depth","size","position"])document.getElementById(key+"-value").textContent=document.getElementById(key).value+"%";for(const key of ["design","view","length","background"])document.querySelectorAll("button[data-"+key+"]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset[key]===state[key])))}
-for(const key of ["design","view","length","background"])document.querySelectorAll("button[data-"+key+"]").forEach(b=>b.addEventListener("click",()=>{state[key]=b.dataset[key];render()}));for(const key of ["depth","size","position"])document.getElementById(key).addEventListener("input",render);
-document.getElementById("copy").addEventListener("click",async()=>{const extra=document.getElementById("request").value.trim();const msg="請修改品牌字卡第三版 "+state.design+" "+info[state.design].name+"："+state.length+"、效果濃度 "+document.getElementById("depth").value+"%、整體大小 "+document.getElementById("size").value+"%、距底部 "+document.getElementById("position").value+"%。"+(extra?"另外："+extra:"")+"請保留第一版、第二版及第三版其他款。";try{await navigator.clipboard.writeText(msg)}catch{const t=document.createElement("textarea");t.value=msg;document.body.append(t);t.select();if(!document.execCommand("copy")){t.remove();document.getElementById("status").textContent="瀏覽器未允許複製，請手動輸入。";return}t.remove()}document.getElementById("status").textContent="已複製，回到對話貼上即可。"});render();
+const stage=document.getElementById("stage"),card=document.getElementById("card"),ref=document.getElementById("reference"),caption=document.getElementById("caption");let state={design:"A2",view:"live",length:"long",background:"photo"};const defaults={A2:58,B1:61,B3:46,D1:68,D2:62,D3:45};
+function fitCard(){
+ card.style.setProperty("--fit",1);
+ card.style.setProperty("--safe-x","0px");card.style.setProperty("--safe-y","0px");card.style.setProperty("--safe-scale",1);
+ const sr=stage.getBoundingClientRect(),margin=sr.width*.025;
+ for(let n=0;n<24;n++){
+  const r=card.getBoundingClientRect();
+  const content=[document.getElementById("title"),document.getElementById("body-copy")].filter(e=>getComputedStyle(e).display!=="none");
+  const bad=r.left<sr.left+margin||r.right>sr.right-margin||r.top<sr.top+margin||r.bottom>sr.bottom-margin||content.some(e=>e.scrollWidth>e.clientWidth+2);
+  if(!bad)break;
+  const next=Math.max(.55,1-(n+1)*.02);
+  card.style.setProperty("--fit",next);
+  if(next===.55)break;
+ }
+ let r=card.getBoundingClientRect();
+ const safeWidth=sr.width-2*margin,safeHeight=sr.height-2*margin;
+ const shrink=Math.min(1,safeWidth/r.width,safeHeight/r.height);
+ if(shrink<1){card.style.setProperty("--safe-scale",shrink);r=card.getBoundingClientRect()}
+ const dx=r.left<sr.left+margin?sr.left+margin-r.left:r.right>sr.right-margin?sr.right-margin-r.right:0;
+ const dy=r.top<sr.top+margin?sr.top+margin-r.top:r.bottom>sr.bottom-margin?sr.bottom-margin-r.bottom:0;
+ card.style.setProperty("--safe-x",dx+"px");card.style.setProperty("--safe-y",dy+"px");
+}
+function render(){
+ const {design,view,length,background}=state,d=info[design],pair=samples[d.kind][length];
+ stage.dataset.design=design;stage.dataset.view=view;stage.dataset.background=background;card.dataset.design=design;
+ document.getElementById("eyebrow").textContent=labels[d.kind];
+ document.getElementById("title").textContent=pair[0];
+ document.getElementById("body-copy").textContent=pair[1];
+ ref.src="./references/"+design+".jpg";ref.alt=design+" "+d.name+"參考原圖";
+ caption.innerHTML="<strong>"+design+" "+d.name+"</strong>｜"+d.desc+(view==="reference"?" 原圖用來對照造型；調整桿在訪談實拍效果中顯示。":"");
+ const val=k=>Number(document.getElementById(k).value);
+ stage.style.setProperty("--depth",val("depth")/100);
+ stage.style.setProperty("--smoke-w",val("smoke-w")+"%");
+ stage.style.setProperty("--smoke-h",val("smoke-h")+"%");
+ stage.style.setProperty("--smoke-x",val("smoke-x")+"%");
+ stage.style.setProperty("--smoke-y",val("smoke-y")+"%");
+ stage.style.setProperty("--dim",val("dim")/100);
+ stage.style.setProperty("--scale",val("size")/100);
+ stage.style.setProperty("--font-scale",val("font")/100);
+ stage.style.setProperty("--card-width",val("card-width")+"%");
+ stage.style.setProperty("--card-shift",val("shift")+"%");
+ stage.style.setProperty("--bottom",val("position")+"%");
+ for(const key of ["depth","smoke-w","smoke-h","smoke-x","smoke-y","dim","size","font","card-width","shift","position"])
+  document.getElementById(key+"-value").textContent=val(key)+"%";
+ document.querySelectorAll(".smoke-only").forEach(e=>e.hidden=!design.startsWith("D"));document.getElementById("depth-label").textContent=design.startsWith("D")?"煙霧濃度":"底板濃度";
+ for(const key of ["design","view","length","background"])
+  document.querySelectorAll("button[data-"+key+"]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset[key]===state[key])));
+ requestAnimationFrame(fitCard);
+}
+for(const key of ["design","view","length","background"])
+ document.querySelectorAll("button[data-"+key+"]").forEach(b=>b.addEventListener("click",()=>{
+  const changed=key==="design"&&state.design!==b.dataset.design;
+  state[key]=b.dataset[key];
+  if(changed)document.getElementById("card-width").value=defaults[state.design];
+  render();
+ }));
+for(const key of ["depth","smoke-w","smoke-h","smoke-x","smoke-y","dim","size","font","card-width","shift","position"])
+ document.getElementById(key).addEventListener("input",render);
+new ResizeObserver(()=>requestAnimationFrame(fitCard)).observe(stage);
+document.getElementById("copy").addEventListener("click",async()=>{const extra=document.getElementById("request").value.trim();const msg="請修改品牌字卡第三版 "+state.design+" "+info[state.design].name+"："+state.length+"、效果濃度 "+document.getElementById("depth").value+"%、煙霧寬高 "+document.getElementById("smoke-w").value+"%／"+document.getElementById("smoke-h").value+"%、煙霧中心 "+document.getElementById("smoke-x").value+"%／"+document.getElementById("smoke-y").value+"%、畫面壓暗 "+document.getElementById("dim").value+"%、字卡大小 "+document.getElementById("size").value+"%、文字大小 "+document.getElementById("font").value+"%、字卡寬度 "+document.getElementById("card-width").value+"%、左右微調 "+document.getElementById("shift").value+"%、距底部 "+document.getElementById("position").value+"%。"+(extra?"另外："+extra:"")+"請保留第一版、第二版及第三版其他款。";try{await navigator.clipboard.writeText(msg)}catch{const t=document.createElement("textarea");t.value=msg;document.body.append(t);t.select();if(!document.execCommand("copy")){t.remove();document.getElementById("status").textContent="瀏覽器未允許複製，請手動輸入。";return}t.remove()}document.getElementById("status").textContent="已複製，回到對話貼上即可。"});render();
 </script></html>
