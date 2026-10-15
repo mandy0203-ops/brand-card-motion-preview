@@ -16,6 +16,11 @@ button:hover,button[aria-pressed="true"]{background:#f5f2e8;color:#24342e}
 .no{display:block;font:600 11px "Helvetica Neue",sans-serif;letter-spacing:.2em;opacity:.65;margin-bottom:4px}
 .name{display:block;font-size:15px}.note{display:block;font-size:11px;opacity:.72;margin-top:4px;font-weight:400}
 .frame{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:radial-gradient(90% 120% at 65% 30%,#354840,#1b2723 62%,#111b18);border:1px solid #65756d}
+.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+.frame[data-background="photo"] .photo{display:block}.frame[data-background="photo"] .ambient{display:none}
+.background-switch{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:-4px 0 12px}
+.background-switch span{font-size:12px;color:#aebdb4;letter-spacing:.14em;margin-right:6px}
+.background-switch button{min-width:100px;text-align:center}
 .ambient{position:absolute;right:12%;top:10%;width:22%;height:88%;border-radius:48% 48% 15% 15%;background:linear-gradient(90deg,#1b2b27,#465a50 40%,#263630);filter:blur(28px);opacity:.62}
 .frame-note{position:absolute;right:3%;top:5%;color:#c6cec8;font:500 10px "Noto Sans CJK TC",sans-serif;letter-spacing:.15em;opacity:.7}
 .safe{position:absolute;left:6%;bottom:14%;max-width:86%}
@@ -52,7 +57,7 @@ button:hover,button[aria-pressed="true"]{background:#f5f2e8;color:#24342e}
 <main>
 <div class="eyebrow">SMOKEY JADE · MOTION STUDIES</div>
 <h1>品牌提問卡｜五款動態試看</h1>
-<p class="intro">先選款式，再切換短、中、長句。每款都會進場、停留、退場；背景只是影片畫面示意。</p>
+<p class="intro">先選款式，再切換短、中、長句。可用同一張字卡對照示意背景和真實訪談畫面，檢查人物與字卡的比例。</p>
 <p class="picker-title">選一款看看</p>
 <div class="presets" role="group" aria-label="字卡款式">
 <button data-style="jade" aria-pressed="true"><span class="no">01</span><span class="name">綠玻璃</span><span class="note">遮罩揭露</span></button>
@@ -61,7 +66,8 @@ button:hover,button[aria-pressed="true"]{background:#f5f2e8;color:#24342e}
 <button data-style="ink" aria-pressed="false"><span class="no">04</span><span class="name">墨綠塊</span><span class="note">錯落滑入</span></button>
 <button data-style="umber" aria-pressed="false"><span class="no">05</span><span class="name">暖根棕</span><span class="note">放大定格</span></button>
 </div>
-<div class="frame" aria-label="十六比九提問卡動態預覽"><div class="ambient"></div><div class="frame-note">畫面示意 · 非正式影片</div><div class="safe" id="safe"></div></div>
+<div class="background-switch" role="group" aria-label="預覽背景"><span>預覽背景</span><button data-background="photo" aria-pressed="true">訪談實拍</button><button data-background="mock" aria-pressed="false">示意背景</button></div>
+<div class="frame" id="frame" data-background="photo" aria-label="十六比九提問卡動態預覽"><img class="photo" src="./訪談實拍_文森_C0122.jpg" alt="文森訪談雙人實拍影格"><div class="ambient"></div><div class="frame-note" id="frame-note">文森訪談實拍 · 原片 16:9</div><div class="safe" id="safe"></div></div>
 <div class="controls"><button data-i="0" aria-pressed="true">短句</button><button data-i="1" aria-pressed="false">中句</button><button data-i="2" aria-pressed="false">長句</button><button id="replay">重播</button><span class="status" id="status">綠玻璃 · 短句 · 8 字</span></div>
 <div class="details"><span><strong>五款</strong>　同一品牌色系，不同材質與節奏</span><span><strong>文字</strong>　三種長度自動貼合寬度</span><span><strong>狀態</strong>　方向試看，尚未定稿</span></div>
 </main>
@@ -69,6 +75,7 @@ button:hover,button[aria-pressed="true"]{background:#f5f2e8;color:#24342e}
 const samples=["你真正想要什麼？","這段關係讓你感到安心嗎？","當對方沒有回應時，你心裡發生了什麼？"];
 const names={jade:"綠玻璃",ivory:"象牙紙",plain:"純文字",ink:"墨綠塊",umber:"暖根棕"};
 const safe=document.getElementById("safe"),status=document.getElementById("status");
+const frame=document.getElementById("frame"),frameNote=document.getElementById("frame-note");
 let selected=0,style="jade";
 function play(i=selected,s=style){
   selected=i;style=s;safe.replaceChildren();
@@ -88,6 +95,12 @@ function play(i=selected,s=style){
 }
 document.querySelectorAll("[data-i]").forEach(b=>b.addEventListener("click",()=>play(Number(b.dataset.i))));
 document.querySelectorAll(".presets [data-style]").forEach(b=>b.addEventListener("click",()=>play(selected,b.dataset.style)));
+document.querySelectorAll(".background-switch [data-background]").forEach(b=>b.addEventListener("click",()=>{
+  frame.dataset.background=b.dataset.background;
+  frameNote.textContent=b.dataset.background==="photo"?"文森訪談實拍 · 原片 16:9":"畫面示意 · 非正式影片";
+  document.querySelectorAll(".background-switch [data-background]").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
+  play();
+}));
 document.getElementById("replay").addEventListener("click",()=>play());
 play();
 </script>
