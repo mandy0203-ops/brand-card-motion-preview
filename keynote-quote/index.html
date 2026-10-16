@@ -17,12 +17,12 @@
 .motif-upper,.motif-lower{pointer-events:auto;cursor:move;touch-action:none;transform-origin:center}
 .motif-mark{position:absolute;left:13%;top:35%;font:400 1px/1 Georgia,serif;color:#FFF9E8;opacity:.94}
 .card{position:relative;border-radius:7px;background:radial-gradient(155% 185% at 12% 2%,rgba(255,255,255,.98) 0%,rgba(245,242,232,.96) 46%,rgba(208,221,217,.91) 100%);color:#2E3E3A;padding:22px 26px;min-height:0;display:flex;align-items:center}
-.quote{font:600 clamp(16px,1.8vw,22px)/1.45 "Noto Sans CJK TC","PingFang TC",sans-serif;letter-spacing:.02em;margin:0;text-wrap:pretty}
+.quote{font:600 clamp(16px,1.8vw,22px)/1.45 "Noto Sans CJK TC","PingFang TC",sans-serif;letter-spacing:.02em;margin:0;white-space:pre;min-width:0}.quote.overflow{outline:2px dashed #C9774B;outline-offset:4px}
 .resize-handle{position:absolute;right:-7px;bottom:-7px;width:20px;height:20px;background:#8B4A2A;border:2px solid #F5F2E8;cursor:nwse-resize;touch-action:none;z-index:2}.resize-handle::after{content:"↘";display:block;color:#fff;font:700 13px Arial,sans-serif;text-align:center;line-height:15px}
 .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}button{appearance:none;border:1px solid #6B8F88;background:transparent;color:#F5F2E8;padding:9px 13px;font:600 13px "Noto Sans CJK TC",sans-serif;cursor:pointer}button[aria-pressed="true"]{background:#F5F2E8;color:#2E3E3A}.note{font-size:13px;line-height:1.7;color:#D0DDD9;margin:16px 0 0}
 .editor{margin-top:18px;border-top:1px solid #6B8F88;padding-top:16px}.editor h2{font-size:18px;margin:0 0 6px}.editor-hint{font-size:13px;line-height:1.6;color:#D0DDD9;margin:0 0 15px}.sliders{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 22px}.control label{display:flex;justify-content:space-between;gap:10px;font-size:13px;margin-bottom:5px}.control output{color:#F9ECC3}.control input[type="range"]{width:100%;accent-color:#F9ECC3}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.field{display:grid;gap:6px;font-size:13px}.field input,.field select,.field textarea{width:100%;background:#F5F2E8;color:#2E3E3A;border:0;border-radius:0;padding:9px;font:14px "Noto Sans CJK TC",sans-serif}.field textarea{min-height:68px;resize:vertical}.editor-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}.editor-status{font-size:12px;color:#F9ECC3}
 .gold-controls{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}.gold-group{border:1px solid #6B8F88;padding:12px}.gold-group legend{color:#F9ECC3;font-size:13px;padding:0 6px}.gold-group .sliders{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}
-.gold-target{font-size:13px;color:#F9ECC3;margin:18px 0 -8px}.copy-output{margin-top:12px}.copy-output textarea{min-height:150px;font-size:13px;line-height:1.6}[hidden]{display:none!important}
+.gold-target{font-size:13px;color:#F9ECC3;margin:18px 0 -8px}.copy-output{margin-top:12px}.copy-output textarea{min-height:150px;font-size:13px;line-height:1.6}[hidden]{display:none!important}.text-warning{font-size:12px;line-height:1.6;color:#F2C4A6;margin:8px 0 0;min-height:1.6em}
 @media(max-width:700px){.sliders{grid-template-columns:repeat(2,minmax(0,1fr))}.fields,.gold-controls{grid-template-columns:1fr}.resize-handle{width:13px;height:13px;right:-4px;bottom:-4px;border-width:1px}.resize-handle::after{font-size:8px;line-height:10px}}
 @media(max-width:700px){body{padding:14px}.top{display:block}.top p{margin-top:8px}.card-wrap{right:5%;bottom:8%;width:max-content;max-width:46%}.card{border-radius:3px;padding:10px 12px;min-height:0}.quote{font-size:clamp(8px,1.65vw,14px);line-height:1.4}}
 </style>
@@ -31,14 +31,14 @@
 <div class="stage" id="stage" data-bg="photo">
 <img class="photo" src="./訪談實拍_文森_C0122.jpg" alt="雙人訪談畫面示意">
 <div class="photo-label">訪談畫面示意 · 下方文字非本段原話</div>
-<div class="card-wrap" id="card-wrap" aria-label="可拖動字卡"><div class="motif" id="motif" aria-hidden="true"><div class="motif-upper" id="motif-upper"></div><div class="motif-lower" id="motif-lower"></div><span class="motif-mark">“</span></div><div class="card" id="card"><p class="quote" id="quote"></p></div><div class="resize-handle" id="resize-handle" role="slider" aria-label="拖動調整字卡寬度" aria-valuemin="20" aria-valuemax="65" aria-valuenow="46" tabindex="0"></div></div>
+<div class="card-wrap" id="card-wrap" aria-label="可拖動字卡"><div class="motif" id="motif" aria-hidden="true"><div class="motif-upper" id="motif-upper"></div><div class="motif-lower" id="motif-lower"></div><span class="motif-mark">“</span></div><div class="card" id="card"><p class="quote" id="quote"></p></div></div>
 </div>
-<div class="controls" role="group" aria-label="試看文字"><button data-text="0" aria-pressed="true">Keynote 長句</button><button data-text="1" aria-pressed="false">中句</button><button data-text="2" aria-pressed="false">短句</button><button data-bg="photo" aria-pressed="true">訪談畫面</button><button data-bg="plain" aria-pressed="false">純色畫面</button></div>
-<section class="editor" aria-label="字卡調整介面"><h2>自己拉拉看</h2><p class="editor-hint">在畫面上拖動字卡可換位置，拖右下角的小方塊可調寬度。露出的兩塊金色也能各自拖動，或用下方滑桿微調；長句、中句、短句的金色位置各自記住，切換按鈕會帶出那一組；完成後按「複製修改指令」，會一次列出三組，貼回對話給我。</p>
+<div class="controls" role="group" aria-label="試看文字"><button data-text="0" aria-pressed="true">長句・三行</button><button data-text="1" aria-pressed="false">中句・兩行</button><button data-text="2" aria-pressed="false">短句・一行</button><button data-bg="photo" aria-pressed="true">訪談畫面</button><button data-bg="plain" aria-pressed="false">純色畫面</button></div>
+<section class="editor" aria-label="字卡調整介面"><h2>自己拉拉看</h2><p class="editor-hint">在畫面上拖動字卡可換位置；字卡長度由字數決定（以最長那一行為準），左右留白永遠一樣寬。露出的兩塊金色也能各自拖動，或用下方滑桿微調；斷行由你決定：試放文字用「/」換行，畫面上的斷行就是成品的斷行。金色位置依行數各存一組（一行／兩行／三行），文字換成幾行就自動帶出那一組；金色大小固定，黏在字卡左下角，不受字卡長短影響。完成後按「複製修改指令」，會一次列出三組，貼回對話給我。</p>
 <div class="sliders">
-<div class="control"><label for="right">距右邊 <output id="right-value"></output></label><input id="right" type="range" min="0" max="60" step="1"></div>
+<div class="control"><label for="edge"><span id="edge-label">距左邊</span> <output id="edge-value"></output></label><input id="edge" type="range" min="0" max="80" step="1"></div>
 <div class="control"><label for="bottom">距下邊 <output id="bottom-value"></output></label><input id="bottom" type="range" min="0" max="55" step="1"></div>
-<div class="control"><label for="width">字卡寬度上限 <output id="width-value"></output></label><input id="width" type="range" min="20" max="65" step="1"></div>
+<div class="control"><label for="padX">左右留白 <output id="padX-value"></output></label><input id="padX" type="range" min="10" max="60" step="1"></div>
 <div class="control"><label for="font">中文字大小 <output id="font-value"></output></label><input id="font" type="range" min="16" max="34" step="1"></div>
 <div class="control"><label for="panel">文字板透明度 <output id="panel-value"></output></label><input id="panel" type="range" min="55" max="100" step="1"></div>
 <div class="control"><label for="cardRadius">白色板塊圓角 <output id="cardRadius-value"></output></label><input id="cardRadius" type="range" min="0" max="50" step="1"></div>
@@ -46,29 +46,50 @@
 </div>
 <p class="gold-target" id="gold-target"></p>
 <div class="gold-controls"><fieldset class="gold-group"><legend>上方金色方塊</legend><div class="sliders"><div class="control"><label for="upperX">左右 <output id="upperX-value"></output></label><input id="upperX" type="range" min="-100" max="100" step="1"></div><div class="control"><label for="upperY">上下 <output id="upperY-value"></output></label><input id="upperY" type="range" min="-100" max="100" step="1"></div><div class="control"><label for="upperScale">大小 <output id="upperScale-value"></output></label><input id="upperScale" type="range" min="50" max="180" step="1"></div><div class="control"><label for="upperAlpha">透明度 <output id="upperAlpha-value"></output></label><input id="upperAlpha" type="range" min="0" max="100" step="1"></div><div class="control"><label for="upperRadius">邊角圓弧 <output id="upperRadius-value"></output></label><input id="upperRadius" type="range" min="0" max="60" step="1"></div><div class="control"><label for="upperAngle">傾斜角度 <output id="upperAngle-value"></output></label><input id="upperAngle" type="range" min="-30" max="30" step="1"></div></div></fieldset><fieldset class="gold-group"><legend>下方金色弧形</legend><div class="sliders"><div class="control"><label for="lowerX">左右 <output id="lowerX-value"></output></label><input id="lowerX" type="range" min="-100" max="100" step="1"></div><div class="control"><label for="lowerY">上下 <output id="lowerY-value"></output></label><input id="lowerY" type="range" min="-100" max="100" step="1"></div><div class="control"><label for="lowerScale">大小 <output id="lowerScale-value"></output></label><input id="lowerScale" type="range" min="50" max="180" step="1"></div><div class="control"><label for="lowerAlpha">透明度 <output id="lowerAlpha-value"></output></label><input id="lowerAlpha" type="range" min="0" max="100" step="1"></div><div class="control"><label for="lowerCurve">左下圓弧 <output id="lowerCurve-value"></output></label><input id="lowerCurve" type="range" min="0" max="100" step="1"></div><div class="control"><label for="lowerAngle">傾斜角度 <output id="lowerAngle-value"></output></label><input id="lowerAngle" type="range" min="-30" max="30" step="1"></div></div></fieldset></div>
-<div class="fields"><label class="field">文字板色調<select id="material"><option value="ivory">暖白灰</option><option value="jade">淺煙玉</option><option value="umber">淺暖棕</option></select></label><label class="field">試放文字<input id="custom-text" type="text" placeholder="在這裡輸入你要看的金句"></label></div>
-<label class="field" style="margin-top:12px">還想怎麼改？<textarea id="feedback" placeholder="例如：金色再淡一些、字更細、往上移一點"></textarea></label>
+<div class="fields"><label class="field">文字板色調<select id="material"><option value="ivory">暖白灰</option><option value="jade">淺煙玉</option><option value="umber">淺暖棕</option></select></label><label class="field">試放文字<input id="custom-text" type="text" placeholder="輸入金句，用 / 換行，例如：好的關係，/容得下彼此不同的聲音。"></label></div>
+<p class="text-warning" id="text-warning" role="status"></p>
+<label class="field" style="margin-top:4px">還想怎麼改？<textarea id="feedback" placeholder="例如：金色再淡一些、字更細、往上移一點"></textarea></label>
 <div class="editor-actions"><button id="copy-request" type="button">複製修改指令</button><button id="reset" type="button">恢復這版預設值</button><span class="editor-status" id="editor-status" role="status"></span></div>
 <label class="field copy-output" id="copy-output-wrap" hidden>剛剛複製的內容（可在這裡檢查；若沒複製成功，全選後手動複製）<textarea id="copy-output" readonly></textarea></label></section>
 <p class="note">這是依 Keynote 草圖製作的獨立試作，文案不是訪談逐字稿。調整只存在這個預覽頁，原本選定的 04 咖啡塊及剪輯時間線都不會受影響。</p>
 </main>
 <script>
-const texts=["當發現可以改善的事情，最該高興的，是不用再抱持著錯誤的想法，繼續生活下去。","好的關係，容得下彼此不同的聲音。","先聽，再說。"];
-const lengthNames=["長句","中句","短句"];
-const STORE="keynote-quote-editor-v2";
-const stage=document.getElementById("stage"),wrap=document.getElementById("card-wrap"),card=document.getElementById("card"),quote=document.getElementById("quote"),motif=document.getElementById("motif"),upper=document.getElementById("motif-upper"),lower=document.getElementById("motif-lower"),handle=document.getElementById("resize-handle"),editorStatus=document.getElementById("editor-status"),goldTarget=document.getElementById("gold-target"),copyOutputWrap=document.getElementById("copy-output-wrap"),copyOutput=document.getElementById("copy-output");
+// 斷行一律手動：「/」或「／」換行，瀏覽器不自動折行（Safari 與 Chrome 出圖一致）
+// 字卡長度＝最長那一行＋左右等寬留白（業主 10/16：長度取決於字數、左右間距一樣）
+const texts=["當發現可以改善的事情，/最該高興的，是不用再/抱持著錯誤的想法，繼續生活下去。","好的關係，/容得下彼此不同的聲音。","先聽，再說。"];
+const lineNames={1:"一行",2:"兩行",3:"三行"};
+const STORE="keynote-quote-editor-v5",OLD_STORES=["keynote-quote-editor-v4","keynote-quote-editor-v3","keynote-quote-editor-v2"];
+const GOLD_REF=40; // 金色大小以「字卡寬 40%」時為準（業主 10/16 調整時的寬度），不隨字卡長短縮放
+const PAD_Y=22;   // 上下留白（預覽基準 px）
+const stage=document.getElementById("stage"),wrap=document.getElementById("card-wrap"),card=document.getElementById("card"),quote=document.getElementById("quote"),motif=document.getElementById("motif"),upper=document.getElementById("motif-upper"),lower=document.getElementById("motif-lower"),editorStatus=document.getElementById("editor-status"),goldTarget=document.getElementById("gold-target"),copyOutputWrap=document.getElementById("copy-output-wrap"),copyOutput=document.getElementById("copy-output"),textWarning=document.getElementById("text-warning");
 const motifKeys=[];for(const name of ["upper","lower"])for(const suffix of ["X","Y","Scale","Alpha",name==="upper"?"Radius":"Curve","Angle"])motifKeys.push(name+suffix);
-// 這版預設值＝2026-10-16 業主調整版：共用字卡設定一組，金色設定長／中／短句各一組
-const defaults={right:48,bottom:9,width:40,font:24,panel:91,cardRadius:4,gold:86,material:"umber",background:"photo",textIndex:0,customText:"",fixedWidth:true,profiles:[
- {upperX:-16,upperY:-45,upperScale:127,upperAlpha:100,upperRadius:1,upperAngle:0,lowerX:19,lowerY:-4,lowerScale:107,lowerAlpha:100,lowerCurve:54,lowerAngle:30},
- {upperX:-37,upperY:-12,upperScale:97,upperAlpha:100,upperRadius:1,upperAngle:0,lowerX:3,lowerY:-10,lowerScale:88,lowerAlpha:100,lowerCurve:54,lowerAngle:30},
- {upperX:-37,upperY:18,upperScale:79,upperAlpha:100,upperRadius:1,upperAngle:0,lowerX:3,lowerY:17,lowerScale:73,lowerAlpha:100,lowerCurve:54,lowerAngle:30}]};
-function fresh(){return {...defaults,profiles:defaults.profiles.map(p=>({...p}))}}
-function useProfile(){Object.assign(state,state.profiles[state.textIndex])}
-function setMotif(key,value){state[key]=value;state.profiles[state.textIndex][key]=value}
+const sharedSliders=["edge","bottom","padX","font","panel","cardRadius","gold"];
+// 這版預設值＝2026-10-16 業主調整版：位置、留白、材質共用；金色依字卡行數各一組
+const defaults={side:"left",edge:12,bottom:9,padX:26,font:24,panel:91,cardRadius:4,gold:86,material:"umber",background:"photo",textIndex:0,customText:"",profiles:{
+ 3:{upperX:-16,upperY:-45,upperScale:127,upperAlpha:100,upperRadius:1,upperAngle:0,lowerX:19,lowerY:-4,lowerScale:107,lowerAlpha:100,lowerCurve:54,lowerAngle:30},
+ 2:{upperX:-37,upperY:-12,upperScale:97,upperAlpha:100,upperRadius:1,upperAngle:0,lowerX:3,lowerY:-10,lowerScale:88,lowerAlpha:100,lowerCurve:54,lowerAngle:30},
+ 1:{upperX:-37,upperY:18,upperScale:79,upperAlpha:100,upperRadius:1,upperAngle:0,lowerX:3,lowerY:17,lowerScale:73,lowerAlpha:100,lowerCurve:54,lowerAngle:30}}};
+function fresh(){return {...defaults,profiles:{1:{...defaults.profiles[1]},2:{...defaults.profiles[2]},3:{...defaults.profiles[3]}}}}
+function lines(){const t=state.customText||texts[state.textIndex]||texts[0];const parts=t.split(/[\/／]/).map(s=>s.trim()).filter(Boolean);return parts.length?parts:[""]}
+function activeKey(){return Math.min(3,lines().length)}
+function useProfile(){Object.assign(state,state.profiles[activeKey()])}
+function setMotif(key,value){state[key]=value;state.profiles[activeKey()][key]=value}
+function migrate(old){
+  // 舊版存檔：v2／v3 以「距右＋寬度」定位 → 換算成靠近那一邊；寬度設定不再使用
+  const saved={...old};delete saved.right;delete saved.width;delete saved.fixedWidth;
+  if(!("edge" in old)){const w=Number(old.width)||40,r=Number(old.right);if(Number.isFinite(r)){const center=100-r-w/2;saved.side=center<50?"left":"right";saved.edge=saved.side==="left"?100-r-w:r}}
+  const src=Array.isArray(old.profiles)?{3:old.profiles[0],2:old.profiles[1],1:old.profiles[2]}:(old.profiles||{});
+  saved.profiles={};for(const k of [1,2,3]){const p={...(src[k]||{})};delete p.width;saved.profiles[k]=p}
+  return saved;
+}
 let state=fresh();
-try{const saved=JSON.parse(localStorage.getItem(STORE));if(saved&&typeof saved==="object"){const profiles=state.profiles.map((p,i)=>({...p,...(Array.isArray(saved.profiles)&&saved.profiles[i]||{})}));state={...state,...saved,profiles}}}catch{}
+try{
+  let saved=JSON.parse(localStorage.getItem(STORE));
+  if(!saved)for(const key of OLD_STORES){const old=JSON.parse(localStorage.getItem(key));if(old&&typeof old==="object"){saved=migrate(old);break}}
+  if(saved&&typeof saved==="object"){const sp=saved.profiles&&typeof saved.profiles==="object"?saved.profiles:{};const profiles={};for(const k of [1,2,3])profiles[k]={...state.profiles[k],...(sp[k]||{})};state={...state,...saved,profiles}}
+}catch{}
 if(![0,1,2].includes(state.textIndex))state.textIndex=0;
+if(!["left","right"].includes(state.side))state.side="left";
 useProfile();
 function clamp(n,min,max){return Math.max(min,Math.min(max,n))}
 function save(){try{localStorage.setItem(STORE,JSON.stringify(state))}catch{}}
@@ -78,60 +99,72 @@ function panelGradient(){
   const stop=(rgb,alpha)=>`rgba(${rgb.join(",")},${alpha.toFixed(2)})`;
   return `radial-gradient(155% 185% at 12% 2%,${stop(colors[0],top)} 0%,${stop(colors[1],a)} 46%,${stop(colors[2],end)} 100%)`;
 }
+function cardWidthPct(){return wrap.offsetWidth/stage.clientWidth*100}
+function cardLeftPct(){return state.side==="left"?state.edge:100-state.edge-cardWidthPct()}
+function setLeftPct(left){const w=cardWidthPct();left=clamp(left,0,Math.max(0,100-w));if(left+w/2<50){state.side="left";state.edge=left}else{state.side="right";state.edge=100-left-w}}
 function render(){
   stage.dataset.bg=state.background;
-  quote.textContent=state.customText||texts[state.textIndex]||texts[0];
-  quote.style.fontSize=Math.max(8,state.font*stage.clientWidth/1120)+"px";
-  card.style.background=panelGradient();card.style.borderRadius=state.cardRadius*stage.clientWidth/1120+"px";motif.style.opacity=state.gold/100;
+  const textLines=lines(),key=activeKey(),sw=stage.clientWidth,u=sw/1120;
+  quote.textContent=textLines.join("\n");
+  quote.style.fontSize=Math.max(8,state.font*u)+"px";
+  card.style.padding=`${PAD_Y*u}px ${state.padX*u}px`;
+  card.style.background=panelGradient();card.style.borderRadius=state.cardRadius*u+"px";motif.style.opacity=state.gold/100;
+  // 金色尺寸固定（以字卡寬 40% 時為準），黏在字卡左下角
+  const ref=sw*GOLD_REF/100;motif.style.width=ref*.27+"px";motif.style.left=-ref*.11+"px";
   for(const [name,element] of [["upper",upper],["lower",lower]]){element.style.transform=`translate(${state[name+"X"]}%,${state[name+"Y"]}%) rotate(${state[name+"Angle"]}deg) scale(${state[name+"Scale"]/100})`;element.style.opacity=state[name+"Alpha"]/100}
   upper.style.borderRadius=state.upperRadius*motif.offsetWidth/(1120*.46*.27)+"px";lower.style.borderBottomLeftRadius=state.lowerCurve+"%";
   motif.querySelector(".motif-mark").style.fontSize=motif.offsetWidth*.37+"px";
-  wrap.style.width=state.fixedWidth?state.width+"%":"max-content";
-  wrap.style.maxWidth=state.width+"%";
-  state.right=clamp(Number(state.right)||0,0,Math.max(0,100-wrap.offsetWidth/stage.clientWidth*100));
+  // 字卡長度＝最長一行＋左右留白
+  wrap.style.maxWidth="none";wrap.style.minWidth="0";wrap.style.width="max-content";
+  const actual=cardWidthPct();
+  state.edge=clamp(Number(state.edge)||0,0,Math.max(0,100-actual));
   state.bottom=clamp(Number(state.bottom)||0,0,Math.max(0,100-wrap.offsetHeight/stage.clientHeight*100));
-  wrap.style.right=state.right+"%";wrap.style.bottom=state.bottom+"%";
-  for(const key of ["right","bottom","width","font","panel","cardRadius","gold"]){const input=document.getElementById(key);input.value=state[key];document.getElementById(key+"-value").textContent=Math.round(state[key])+(["font","cardRadius"].includes(key)?" px":"%")}
-  for(const key of motifKeys){const suffix=key.replace(/^(upper|lower)/,"");document.getElementById(key).value=state[key];document.getElementById(key+"-value").textContent=Math.round(state[key])+(suffix==="Angle"?"°":suffix==="Radius"?" px":"%")}
-  goldTarget.textContent=`下方金色滑桿目前調的是：${lengthNames[state.textIndex]}${state.customText?"（試放文字沿用這組）":""}`;
+  if(state.side==="left"){wrap.style.left=state.edge+"%";wrap.style.right="auto"}else{wrap.style.right=state.edge+"%";wrap.style.left="auto"}
+  wrap.style.bottom=state.bottom+"%";
+  document.getElementById("edge-label").textContent=state.side==="left"?"距左邊":"距右邊";
+  for(const k of sharedSliders){const input=document.getElementById(k);input.value=state[k];document.getElementById(k+"-value").textContent=Math.round(state[k])+(["font","cardRadius","padX"].includes(k)?" px":"%")+(k==="padX"?`（字卡長 ${Math.round(actual)}%）`:"")}
+  for(const k of motifKeys){const suffix=k.replace(/^(upper|lower)/,"");document.getElementById(k).value=state[k];document.getElementById(k+"-value").textContent=Math.round(state[k])+(suffix==="Angle"?"°":suffix==="Radius"?" px":"%")}
+  goldTarget.textContent=`下方金色滑桿目前調的是：${lineNames[key]}字卡（所有${lineNames[key]}金句共用）`;
+  const tooWide=actual>60;quote.classList.toggle("overflow",tooWide);
+  const warnings=[];
+  if(tooWide)warnings.push(`有一行太長，字卡被撐到 ${Math.round(actual)}% 寬（虛線框）：建議加「/」換行。`);
+  if(textLines.length>3)warnings.push(`現在是 ${textLines.length} 行，金色沿用三行設定；建議縮短或重新斷行。`);
+  if(textLines.some((l,i)=>i>0&&i===textLines.length-1&&[...l.replace(/[，。、；：！？「」]/g,"")].length<=2))warnings.push("最後一行只剩一兩個字，建議調整斷行。");
+  if(wrap.offsetHeight>stage.clientHeight*.55)warnings.push("字卡偏高，請確認畫面可讀性。");
+  textWarning.textContent=warnings.join(" ");
   document.getElementById("material").value=state.material;
-  document.getElementById("custom-text").value=state.customText;
-  handle.setAttribute("aria-valuenow",Math.round(state.width));
+  if(document.activeElement!==document.getElementById("custom-text"))document.getElementById("custom-text").value=state.customText;
   document.querySelectorAll("button[data-text]").forEach(b=>b.setAttribute("aria-pressed",String(!state.customText&&Number(b.dataset.text)===state.textIndex)));
   document.querySelectorAll("button[data-bg]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.bg===state.background)));
-  if(wrap.offsetHeight>stage.clientHeight*.55)editorStatus.textContent="文字偏長，請確認畫面可讀性。";
 }
-for(const key of ["right","bottom","width","font","panel","cardRadius","gold"]){document.getElementById(key).addEventListener("input",e=>{state[key]=Number(e.target.value);if(key==="width")state.fixedWidth=true;render();save()})}
-for(const key of motifKeys){document.getElementById(key).addEventListener("input",e=>{setMotif(key,Number(e.target.value));render();save()})}
+// 改留白、字級時保持靠近那一邊的邊緣不動（左側卡片＝左邊緣不動，從右邊伸縮）
+for(const k of sharedSliders){document.getElementById(k).addEventListener("input",e=>{state[k]=Number(e.target.value);render();save()})}
+for(const k of motifKeys){document.getElementById(k).addEventListener("input",e=>{setMotif(k,Number(e.target.value));render();save()})}
 document.getElementById("material").addEventListener("change",e=>{state.material=e.target.value;render();save()});
-document.getElementById("custom-text").addEventListener("input",e=>{state.customText=e.target.value;render();save()});
+document.getElementById("custom-text").addEventListener("input",e=>{state.customText=e.target.value;useProfile();render();save()});
 document.querySelectorAll("button[data-text]").forEach(b=>b.addEventListener("click",()=>{state.textIndex=Number(b.dataset.text);state.customText="";useProfile();render();save()}));
 document.querySelectorAll("button[data-bg]").forEach(b=>b.addEventListener("click",()=>{state.background=b.dataset.bg;render();save()}));
 let gesture=null;
-wrap.addEventListener("pointerdown",e=>{if(e.target===handle||e.target===upper||e.target===lower)return;gesture={type:"move",x:e.clientX,y:e.clientY,right:state.right,bottom:state.bottom};wrap.classList.add("dragging");wrap.setPointerCapture(e.pointerId);e.preventDefault()});
-handle.addEventListener("pointerdown",e=>{e.stopPropagation();gesture={type:"resize",x:e.clientX,right:state.right,width:wrap.offsetWidth/stage.clientWidth*100};state.fixedWidth=true;handle.setPointerCapture(e.pointerId);e.preventDefault()});
-function updateGesture(e){if(!gesture)return;const dx=(e.clientX-gesture.x)/stage.clientWidth*100;if(gesture.type==="move"){state.right=gesture.right-dx;state.bottom=gesture.bottom-(e.clientY-gesture.y)/stage.clientHeight*100}else{state.width=clamp(gesture.width+dx,20,65);state.right=gesture.right-dx}render()}
+wrap.addEventListener("pointerdown",e=>{if(e.target===upper||e.target===lower)return;gesture={x:e.clientX,y:e.clientY,left:cardLeftPct(),bottom:state.bottom};wrap.classList.add("dragging");wrap.setPointerCapture(e.pointerId);e.preventDefault()});
+wrap.addEventListener("pointermove",e=>{if(!gesture)return;setLeftPct(gesture.left+(e.clientX-gesture.x)/stage.clientWidth*100);state.bottom=gesture.bottom-(e.clientY-gesture.y)/stage.clientHeight*100;render()});
 function endGesture(){if(!gesture)return;gesture=null;wrap.classList.remove("dragging");save()}
-wrap.addEventListener("pointermove",updateGesture);handle.addEventListener("pointermove",updateGesture);
-wrap.addEventListener("pointerup",endGesture);handle.addEventListener("pointerup",endGesture);
-wrap.addEventListener("pointercancel",endGesture);handle.addEventListener("pointercancel",endGesture);
+wrap.addEventListener("pointerup",endGesture);wrap.addEventListener("pointercancel",endGesture);
 let goldGesture=null;
 for(const [name,element] of [["upper",upper],["lower",lower]]){
   element.addEventListener("pointerdown",e=>{e.stopPropagation();goldGesture={name,x:e.clientX,y:e.clientY,startX:state[name+"X"],startY:state[name+"Y"],width:element.offsetWidth,height:element.offsetHeight};element.setPointerCapture(e.pointerId);e.preventDefault()});
   element.addEventListener("pointermove",e=>{if(!goldGesture||goldGesture.name!==name)return;setMotif(name+"X",clamp(goldGesture.startX+(e.clientX-goldGesture.x)/goldGesture.width*100,-100,100));setMotif(name+"Y",clamp(goldGesture.startY+(e.clientY-goldGesture.y)/goldGesture.height*100,-100,100));render()});
   for(const event of ["pointerup","pointercancel"])element.addEventListener(event,()=>{if(goldGesture){goldGesture=null;save()}});
 }
-handle.addEventListener("keydown",e=>{if(e.key!=="ArrowLeft"&&e.key!=="ArrowRight")return;e.preventDefault();state.fixedWidth=true;state.width=clamp(state.width+(e.key==="ArrowRight"?1:-1),20,65);render();save()});
-document.getElementById("reset").addEventListener("click",()=>{state=fresh();useProfile();document.getElementById("feedback").value="";copyOutputWrap.hidden=true;editorStatus.textContent="已恢復這版預設值（10/16 調整版）";render();save()});
+document.getElementById("reset").addEventListener("click",()=>{state=fresh();useProfile();document.getElementById("feedback").value="";document.getElementById("custom-text").value="";copyOutputWrap.hidden=true;editorStatus.textContent="已恢復這版預設值（10/16 調整版）";render();save()});
 function motifLine(p){const r=Math.round;return `上方金色方塊：左右 ${r(p.upperX)}%、上下 ${r(p.upperY)}%、大小 ${r(p.upperScale)}%、透明度 ${r(p.upperAlpha)}%、邊角圓弧 ${r(p.upperRadius)} px、傾斜 ${r(p.upperAngle)}°；下方金色弧形：左右 ${r(p.lowerX)}%、上下 ${r(p.lowerY)}%、大小 ${r(p.lowerScale)}%、透明度 ${r(p.lowerAlpha)}%、左下圓弧 ${r(p.lowerCurve)}%、傾斜 ${r(p.lowerAngle)}°。`}
 document.getElementById("copy-request").addEventListener("click",async()=>{
   const r=Math.round,extra=document.getElementById("feedback").value.trim();
   const material={ivory:"暖白灰",jade:"淺煙玉",umber:"淺暖棕"}[state.material];
   const message=[
-    "請依我在「Keynote 金句卡試作」調整的畫面修改（長、中、短句各一組金色設定）：",
-    `共用：字卡距右 ${r(state.right)}%、距下 ${r(state.bottom)}%、寬度${state.fixedWidth?"固定":"上限"} ${r(state.width)}%、中文字大小 ${r(state.font)}（預覽基準）、文字板透明度 ${r(state.panel)}%、白色板塊圓角 ${r(state.cardRadius)} px、金色濃淡 ${r(state.gold)}%、色調「${material}」。`,
-    ...lengthNames.map((n,i)=>`【${n}】${motifLine(state.profiles[i])}`),
-    state.customText?`試放文字（沿用${lengthNames[state.textIndex]}的金色設定）：「${state.customText}」。`:"",
+    "請依我在「Keynote 金句卡試作」調整的畫面修改（斷行手動指定；字卡長度依字數、左右留白等寬；金色依行數各一組、大小固定）：",
+    `共用：字卡${state.side==="left"?"距左":"距右"} ${r(state.edge)}%（以${state.side==="left"?"左":"右"}邊緣對齊）、距下 ${r(state.bottom)}%、左右留白各 ${r(state.padX)} px、上下留白 ${PAD_Y} px、中文字大小 ${r(state.font)}（皆為預覽基準）、文字板透明度 ${r(state.panel)}%、白色板塊圓角 ${r(state.cardRadius)} px、金色濃淡 ${r(state.gold)}%、色調「${material}」。`,
+    ...[1,2,3].map(k=>`【${lineNames[k]}】${motifLine(state.profiles[k])}`),
+    `目前畫面文字（${lineNames[activeKey()]}，／為換行）：「${lines().join("／")}」。`,
     extra?"另外："+extra:"",
     "請保留原本五款與已選 04 咖啡塊。"
   ].filter(Boolean).join("\n");
@@ -139,7 +172,7 @@ document.getElementById("copy-request").addEventListener("click",async()=>{
   let ok=false;
   try{await navigator.clipboard.writeText(message);ok=true}catch{}
   if(!ok){copyOutput.focus();copyOutput.select();try{ok=document.execCommand("copy")}catch{}}
-  editorStatus.textContent=ok?"已複製長、中、短三組參數！回到對話貼上即可（下方可檢查內容）。":"瀏覽器沒有允許自動複製，請在下方框內全選後手動複製。";
+  editorStatus.textContent=ok?"已複製一行、兩行、三行三組參數！回到對話貼上即可（下方可檢查內容）。":"瀏覽器沒有允許自動複製，請在下方框內全選後手動複製。";
 });
 new ResizeObserver(()=>render()).observe(stage);
 render();
